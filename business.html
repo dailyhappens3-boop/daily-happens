@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Business News - Daily Happens</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background: #111;
+            color: white;
+            padding: 8px 20px;
+        }
+
+        .top-bar-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-bar a {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .instagram {
+            color: #e1306c;
+        }
+
+        .facebook {
+            color: #1877f2;
+        }
+
+        .x-twitter {
+            color: white;
+        }
+
+        .youtube {
+            color: #ff0000;
+        }
+
+        /* HEADER */
+        .header {
+            background: white;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .logo {
+            width: 180px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* LANGUAGE */
+        .language-switch {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .language-switch button {
+            border: 1px solid #ccc;
+            background: white;
+            padding: 7px 15px;
+            margin: 0 3px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .language-switch button.active {
+            background: #b40000;
+            color: white;
+            border-color: #b40000;
+        }
+
+        /* NAVIGATION */
+        .navigation {
+            width: 100%;
+            background: white;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-content a {
+            flex: 0 0 auto;
+            padding: 15px 18px;
+            color: #222;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-content a:hover {
+            color: #b40000;
+            background: #fafafa;
+        }
+
+        /* BREAKING NEWS */
+        .breaking {
+            background: #b40000;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .breaking-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .breaking-label {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .breaking-text {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        /* MAIN */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #777;
+            font-size: 15px;
+        }
+
+        /* SECTION */
+        .section-title {
+            font-size: 25px;
+            margin: 35px 0 20px;
+            border-left: 5px solid #b40000;
+            padding-left: 12px;
+        }
+
+        /* NEWS GRID */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: 0.25s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-content {
+            padding: 18px;
+        }
+
+        .news-content h3 {
+            font-size: 19px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .news-content p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: #b40000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* VIDEO GRID */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: 0.25s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-image {
+            position: relative;
+        }
+
+        .video-image img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .play-button {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 58px;
+            height: 58px;
+            background: rgba(180, 0, 0, 0.95);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .video-content {
+            padding: 18px;
+        }
+
+        .video-content h3 {
+            font-size: 19px;
+            line-height: 1.4;
+        }
+
+        .video-content a {
+            text-decoration: none;
+            color: #222;
+        }
+
+        /* LANGUAGE */
+        .english {
+            display: none;
+        }
+
+        body.english-mode .tamil {
+            display: none !important;
+        }
+
+        body.english-mode .english {
+            display: block !important;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 50px;
+            background: #111;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+
+        .footer-social a {
+            margin: 0 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+
+            .news-grid,
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .logo {
+                width: 140px;
+            }
+
+            .top-bar-inner {
+                justify-content: center;
+            }
+
+            .news-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title h1 {
+                font-size: 26px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP SOCIAL BAR -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+
+            <a class="instagram"
+               href="https://instagram.com/daily.happens"
+               target="_blank">
+                Instagram
+            </a>
+
+            <a class="facebook"
+               href="https://facebook.com/share/196dqkZQZC/"
+               target="_blank">
+                Facebook
+            </a>
+
+            <a class="x-twitter"
+               href="https://x.com/DailyHappean"
+               target="_blank">
+                X
+            </a>
+
+            <a class="youtube"
+               href="https://youtube.com/@daily.happens"
+               target="_blank">
+                YouTube
+            </a>
+
+        </div>
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="index.html">
+                <img
+                    src="logo.jpg"
+                    alt="Daily Happens"
+                    class="logo"
+                >
+            </a>
+
+            <div class="language-switch">
+
+                <button
+                    id="tamilBtn"
+                    class="active"
+                    onclick="showTamil()">
+                    தமிழ்
+                </button>
+
+                <button
+                    id="englishBtn"
+                    onclick="showEnglish()">
+                    English
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+    <nav class="navigation">
+
+        <div class="nav-content">
+
+            <a href="index.html">
+                <span class="tamil">முகப்பு</span>
+                <span class="english">Home</span>
+            </a>
+
+            <a href="index.html#latest">
+                <span class="tamil">சமீபத்திய செய்திகள்</span>
+                <span class="english">Latest</span>
+            </a>
+
+            <a href="tamil-nadu.html">
+                <span class="tamil">தமிழ்நாடு</span>
+                <span class="english">Tamil Nadu</span>
+            </a>
+
+            <a href="india.html">
+                <span class="tamil">இந்தியா</span>
+                <span class="english">India</span>
+            </a>
+
+            <a href="world.html">
+                <span class="tamil">உலகம்</span>
+                <span class="english">World</span>
+            </a>
+
+            <a href="politics.html">
+                <span class="tamil">அரசியல்</span>
+                <span class="english">Politics</span>
+            </a>
+
+            <a href="business.html">
+                <span class="tamil">வணிகம்</span>
+                <span class="english">Business</span>
+            </a>
+
+            <a href="technology.html">
+                <span class="tamil">தொழில்நுட்பம்</span>
+                <span class="english">Technology</span>
+            </a>
+
+            <a href="sports.html">
+                <span class="tamil">விளையாட்டு</span>
+                <span class="english">Sports</span>
+            </a>
+
+            <a href="cinema.html">
+                <span class="tamil">சினிமா</span>
+                <span class="english">Cinema</span>
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- BREAKING NEWS -->
+    <div class="breaking">
+
+        <div class="breaking-inner">
+
+            <div class="breaking-label">
+                <span class="tamil">முக்கிய செய்தி</span>
+                <span class="english">BREAKING</span>
+            </div>
+
+            <div class="breaking-text">
+
+                <span class="tamil">
+                    வணிக உலகின் முக்கிய செய்திகளை Daily Happens வழங்குகிறது
+                </span>
+
+                <span class="english">
+                    Latest business news from Daily Happens
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN -->
+    <main class="container">
+
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+
+            <h1 class="tamil">
+                வணிக செய்திகள்
+            </h1>
+
+            <h1 class="english">
+                Business News
+            </h1>
+
+            <p class="tamil">
+                இந்தியா மற்றும் உலகின் வணிகம், சந்தை மற்றும் பொருளாதார செய்திகள்
+            </p>
+
+            <p class="english">
+                Business, market and economic news from India and around the world
+            </p>
+
+        </div>
+
+
+        <!-- BUSINESS NEWS -->
+        <h2 class="section-title">
+
+            <span class="tamil">
+                வணிக செய்திகள்
+            </span>
+
+            <span class="english">
+                Business News
+            </span>
+
+        </h2>
+
+
+        <div class="news-grid">
+
+            <!-- NEWS 1 -->
+            <article class="news-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80"
+                    alt="Business News"
+                >
+
+                <div class="news-content">
+
+                    <h3 class="tamil">
+                        வணிக உலகின் முக்கிய செய்தி
+                    </h3>
+
+                    <h3 class="english">
+                        Major Business News
+                    </h3>
+
+                    <p class="tamil">
+                        வணிகம் மற்றும் பொருளாதாரம் தொடர்பான முக்கிய தகவல்கள்.
+                    </p>
+
+                    <p class="english">
+                        Important updates from the world of business and economy.
+                    </p>
+
+                    <a
+                        href="business-news-1.html"
+                        class="read-more">
+
+                        <span class="tamil">முழு செய்தியை படிக்க →</span>
+                        <span class="english">Read Full Story →</span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- NEWS 2 -->
+            <article class="news-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?auto=format&fit=crop&w=900&q=80"
+                    alt="Business News"
+                >
+
+                <div class="news-content">
+
+                    <h3 class="tamil">
+                        சந்தை மற்றும் பொருளாதார செய்தி
+                    </h3>
+
+                    <h3 class="english">
+                        Market and Economy News
+                    </h3>
+
+                    <p class="tamil">
+                        சந்தை நிலவரங்கள் மற்றும் பொருளாதார மாற்றங்கள் பற்றிய செய்திகள்.
+                    </p>
+
+                    <p class="english">
+                        News about market developments and economic changes.
+                    </p>
+
+                    <a
+                        href="business-news-2.html"
+                        class="read-more">
+
+                        <span class="tamil">முழு செய்தியை படிக்க →</span>
+                        <span class="english">Read Full Story →</span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- NEWS 3 -->
+            <article class="news-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80"
+                    alt="Business News"
+                >
+
+                <div class="news-content">
+
+                    <h3 class="tamil">
+                        நிறுவனங்கள் மற்றும் தொழில் செய்திகள்
+                    </h3>
+
+                    <h3 class="english">
+                        Companies and Industry News
+                    </h3>
+
+                    <p class="tamil">
+                        நிறுவனங்கள், தொழில் துறை மற்றும் முதலீடு தொடர்பான செய்திகள்.
+                    </p>
+
+                    <p class="english">
+                        Updates on companies, industries and investments.
+                    </p>
+
+                    <a
+                        href="business-news-3.html"
+                        class="read-more">
+
+                        <span class="tamil">முழு செய்தியை படிக்க →</span>
+                        <span class="english">Read Full Story →</span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- BUSINESS VIDEOS -->
+        <h2 class="section-title">
+
+            <span class="tamil">
+                வணிக வீடியோக்கள்
+            </span>
+
+            <span class="english">
+                Business Videos
+            </span>
+
+        </h2>
+
+
+        <div class="video-grid">
+
+            <!-- VIDEO 1 -->
+            <article class="video-card">
+
+                <a href="business-video-1.html">
+
+                    <div class="video-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80"
+                            alt="Business Video"
+                        >
+
+                        <div class="play-button">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="video-content">
+
+                        <h3 class="tamil">
+                            வணிக செய்திகள் - வீடியோ 1
+                        </h3>
+
+                        <h3 class="english">
+                            Business News - Video 1
+                        </h3>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+
+            <!-- VIDEO 2 -->
+            <article class="video-card">
+
+                <a href="business-video-2.html">
+
+                    <div class="video-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80"
+                            alt="Business Video"
+                        >
+
+                        <div class="play-button">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="video-content">
+
+                        <h3 class="tamil">
+                            வணிக செய்திகள் - வீடியோ 2
+                        </h3>
+
+                        <h3 class="english">
+                            Business News - Video 2
+                        </h3>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+
+            <!-- VIDEO 3 -->
+            <article class="video-card">
+
+                <a href="business-video-3.html">
+
+                    <div class="video-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80"
+                            alt="Business Video"
+                        >
+
+                        <div class="play-button">
+                            ▶
+                        </div>
+
+                    </div>
+
+                    <div class="video-content">
+
+                        <h3 class="tamil">
+                            வணிக செய்திகள் - வீடியோ 3
+                        </h3>
+
+                        <h3 class="english">
+                            Business News - Video 3
+                        </h3>
+
+                    </div>
+
+                </a>
+
+            </article>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p class="tamil">
+            © 2026 Daily Happens. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.
+        </p>
+
+        <p class="english">
+            © 2026 Daily Happens. All rights reserved.
+        </p>
+
+        <div class="footer-social">
+
+            <a
+                class="instagram"
+                href="https://instagram.com/daily.happens"
+                target="_blank">
+                Instagram
+            </a>
+
+            <a
+                class="facebook"
+                href="https://facebook.com/share/196dqkZQZC/"
+                target="_blank">
+                Facebook
+            </a>
+
+            <a
+                class="x-twitter"
+                href="https://x.com/DailyHappean"
+                target="_blank">
+                X
+            </a>
+
+            <a
+                class="youtube"
+                href="https://youtube.com/@daily.happens"
+                target="_blank">
+                YouTube
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- LANGUAGE SCRIPT -->
+    <script>
+
+        const tamilBtn =
+            document.getElementById("tamilBtn");
+
+        const englishBtn =
+            document.getElementById("englishBtn");
+
+
+        function showTamil() {
+
+            document.body.classList.remove("english-mode");
+
+            tamilBtn.classList.add("active");
+
+            englishBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "tamil"
+            );
+        }
+
+
+        function showEnglish() {
+
+            document.body.classList.add("english-mode");
+
+            englishBtn.classList.add("active");
+
+            tamilBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "english"
+            );
+        }
+
+
+        if (
+            localStorage.getItem("dailyHappensLanguage")
+            === "english"
+        ) {
+
+            showEnglish();
+
+        } else {
+
+            showTamil();
+
+        }
+
+    </script>
+
+</body>
+</html>

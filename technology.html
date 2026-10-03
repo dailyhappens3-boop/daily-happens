@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Technology News | Daily Happens</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, "Noto Sans Tamil", sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background: #111;
+            color: white;
+            padding: 8px 20px;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .top-bar a:hover {
+            color: #ff3333;
+        }
+
+        /* HEADER */
+        header {
+            background: white;
+            text-align: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            width: 180px;
+            max-width: 80%;
+        }
+
+        /* LANGUAGE */
+        .language-switch {
+            margin-top: 15px;
+        }
+
+        .language-switch button {
+            padding: 7px 16px;
+            border: 1px solid #b40000;
+            background: white;
+            color: #b40000;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 0 3px;
+            font-weight: bold;
+        }
+
+        .language-switch button.active {
+            background: #b40000;
+            color: white;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 14px 15px;
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #b40000;
+        }
+
+        /* BREAKING NEWS */
+        .breaking {
+            display: flex;
+            align-items: center;
+            background: #0d2340;
+            color: white;
+            overflow: hidden;
+        }
+
+        .breaking-label {
+            background: #b40000;
+            padding: 12px 18px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .breaking-text {
+            padding-left: 20px;
+            white-space: nowrap;
+            animation: scrollText 18s linear infinite;
+        }
+
+        @keyframes scrollText {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* PAGE HEADER */
+        .page-header {
+            max-width: 1200px;
+            margin: 40px auto 25px;
+            padding: 0 20px;
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+            color: #0d2340;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* SECTION TITLE */
+        .section-title {
+            max-width: 1200px;
+            margin: 35px auto 20px;
+            padding: 0 20px;
+            font-size: 28px;
+            color: #0d2340;
+            border-left: 5px solid #b40000;
+            line-height: 1.3;
+        }
+
+        /* NEWS GRID */
+        .news-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* NEWS CARD */
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.13);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-content h3 {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            color: #111;
+        }
+
+        .news-content p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .read-button {
+            display: inline-block;
+            background: #0d2340;
+            color: white;
+            text-decoration: none;
+            padding: 9px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .read-button:hover {
+            background: #b40000;
+        }
+
+        /* VIDEO GRID */
+        .video-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        /* VIDEO CARD */
+        .video-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.13);
+        }
+
+        /* VIDEO THUMBNAIL */
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 210px;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* PLAY BUTTON */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+
+            background: rgba(180, 0, 0, 0.92);
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+            padding-left: 4px;
+        }
+
+        /* VIDEO CONTENT */
+        .video-content {
+            padding: 20px;
+        }
+
+        .video-content h3 {
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+            color: #111;
+        }
+
+        .watch-button {
+            display: inline-block;
+            background: #b40000;
+            color: white;
+            text-decoration: none;
+            padding: 9px 16px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .watch-button:hover {
+            background: #0d2340;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 7px 0;
+        }
+
+        /* LANGUAGE */
+        .english {
+            display: none;
+        }
+
+        /* TABLET */
+        @media (max-width: 900px) {
+            .news-grid,
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* MOBILE */
+        @media (max-width: 650px) {
+
+            .top-bar {
+                text-align: center;
+                font-size: 12px;
+            }
+
+            .top-bar a {
+                margin-left: 7px;
+            }
+
+            nav ul {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+
+            nav ul li a {
+                padding: 12px 10px;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            .page-header h1 {
+                font-size: 29px;
+            }
+
+            .section-title {
+                font-size: 23px;
+            }
+
+            .news-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-card img,
+            .video-thumbnail {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- TOP SOCIAL BAR -->
+    <div class="top-bar">
+
+        <a href="https://instagram.com/daily.happens" target="_blank">
+            Instagram
+        </a>
+
+        <a href="https://facebook.com/share/196dqkZQZC/" target="_blank">
+            Facebook
+        </a>
+
+        <a href="https://x.com/DailyHappean" target="_blank">
+            X
+        </a>
+
+        <a href="https://youtube.com/@daily.happens" target="_blank">
+            YouTube
+        </a>
+
+    </div>
+
+
+    <!-- HEADER -->
+    <header>
+
+        <img
+            src="logo.jpg"
+            alt="Daily Happens Logo"
+            class="logo"
+        >
+
+        <div class="language-switch">
+
+            <button
+                id="tamilBtn"
+                class="active"
+                onclick="showTamil()">
+                தமிழ்
+            </button>
+
+            <button
+                id="englishBtn"
+                onclick="showEnglish()">
+                English
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+    <nav>
+
+        <ul>
+
+            <li><a href="index.html">Home</a></li>
+
+            <li><a href="latest-news.html">
+                Latest News
+            </a></li>
+
+            <li><a href="tamil-nadu.html">
+                Tamil Nadu
+            </a></li>
+
+            <li><a href="india.html">
+                India
+            </a></li>
+
+            <li><a href="world.html">
+                World
+            </a></li>
+
+            <li><a href="politics.html">
+                Politics
+            </a></li>
+
+            <li><a href="business.html">
+                Business
+            </a></li>
+
+            <li><a href="technology.html">
+                Technology
+            </a></li>
+
+            <li><a href="sports.html">
+                Sports
+            </a></li>
+
+            <li><a href="cinema.html">
+                Cinema
+            </a></li>
+
+            <li><a href="videos.html">
+                Videos
+            </a></li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- BREAKING NEWS -->
+    <div class="breaking">
+
+        <div class="breaking-label">
+
+            <span class="tamil">
+                முக்கிய செய்திகள்
+            </span>
+
+            <span class="english">
+                BREAKING NEWS
+            </span>
+
+        </div>
+
+
+        <div class="breaking-text">
+
+            <span class="tamil">
+                தொழில்நுட்ப உலகில் புதிய மாற்றங்கள் தொடர்ந்து உருவாகி வருகின்றன.
+            </span>
+
+            <span class="english">
+                New developments and changes continue to emerge in the technology world.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+
+        <h1>
+
+            <span class="tamil">
+                தொழில்நுட்ப செய்திகள்
+            </span>
+
+            <span class="english">
+                Technology News
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            <span class="tamil">
+                தொழில்நுட்ப உலகின் முக்கிய செய்திகள், புதிய கண்டுபிடிப்புகள் மற்றும் டிஜிட்டல் மாற்றங்கள்.
+            </span>
+
+            <span class="english">
+                Latest technology news, innovations and digital developments from around the world.
+            </span>
+
+        </p>
+
+    </div>
+
+
+    <!-- TECHNOLOGY NEWS -->
+    <h2 class="section-title">
+
+        <span class="tamil">
+            சமீபத்திய தொழில்நுட்ப செய்திகள்
+        </span>
+
+        <span class="english">
+            Latest Technology News
+        </span>
+
+    </h2>
+
+
+    <section class="news-grid">
+
+
+        <!-- NEWS 1 -->
+        <article class="news-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+                alt="Technology News 1"
+            >
+
+            <div class="news-content">
+
+                <h3 class="tamil">
+                    புதிய தொழில்நுட்ப வளர்ச்சிகள் உலகளவில் கவனம் பெறுகின்றன
+                </h3>
+
+                <h3 class="english">
+                    New Technology Developments Gain Global Attention
+                </h3>
+
+
+                <p class="tamil">
+                    தொழில்நுட்ப உலகில் உருவாகி வரும் புதிய மாற்றங்கள் மற்றும் கண்டுபிடிப்புகள் குறித்து தெரிந்துகொள்ளுங்கள்.
+                </p>
+
+                <p class="english">
+                    Learn about new developments and innovations emerging across the technology sector.
+                </p>
+
+
+                <a
+                    href="technology-news-1.html"
+                    class="read-button">
+
+                    <span class="tamil">
+                        முழு செய்தி →
+                    </span>
+
+                    <span class="english">
+                        Read Full Story →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- NEWS 2 -->
+        <article class="news-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=900&q=80"
+                alt="Technology News 2"
+            >
+
+            <div class="news-content">
+
+                <h3 class="tamil">
+                    செயற்கை நுண்ணறிவு தொழில்நுட்பத்தில் புதிய முன்னேற்றங்கள்
+                </h3>
+
+                <h3 class="english">
+                    New Developments in Artificial Intelligence Technology
+                </h3>
+
+
+                <p class="tamil">
+                    செயற்கை நுண்ணறிவு மற்றும் அதன் பயன்பாடுகளில் உருவாகி வரும் புதிய மாற்றங்கள்.
+                </p>
+
+                <p class="english">
+                    New developments are emerging in artificial intelligence and its applications.
+                </p>
+
+
+                <a
+                    href="technology-news-2.html"
+                    class="read-button">
+
+                    <span class="tamil">
+                        முழு செய்தி →
+                    </span>
+
+                    <span class="english">
+                        Read Full Story →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- NEWS 3 -->
+        <article class="news-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=900&q=80"
+                alt="Technology News 3"
+            >
+
+            <div class="news-content">
+
+                <h3 class="tamil">
+                    டிஜிட்டல் உலகில் வேகமாக வளர்ந்து வரும் புதிய தொழில்நுட்பங்கள்
+                </h3>
+
+                <h3 class="english">
+                    Emerging Technologies Transforming the Digital World
+                </h3>
+
+
+                <p class="tamil">
+                    டிஜிட்டல் சேவைகள் மற்றும் இணைய தொழில்நுட்பத்தில் தொடர்ந்து உருவாகும் புதிய முன்னேற்றங்கள்.
+                </p>
+
+                <p class="english">
+                    New developments continue to shape digital services and internet technology.
+                </p>
+
+
+                <a
+                    href="technology-news-3.html"
+                    class="read-button">
+
+                    <span class="tamil">
+                        முழு செய்தி →
+                    </span>
+
+                    <span class="english">
+                        Read Full Story →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- TECHNOLOGY VIDEOS -->
+    <h2 class="section-title">
+
+        <span class="tamil">
+            தொழில்நுட்ப செய்திகள் வீடியோக்கள்
+        </span>
+
+        <span class="english">
+            Technology News Videos
+        </span>
+
+    </h2>
+
+
+    <section class="video-grid">
+
+
+        <!-- VIDEO 1 -->
+        <article class="video-card">
+
+            <div class="video-thumbnail">
+
+                <img
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+                    alt="Technology Video 1"
+                >
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+
+            <div class="video-content">
+
+                <h3 class="tamil">
+                    தொழில்நுட்ப உலகின் முக்கிய செய்திகள்
+                </h3>
+
+                <h3 class="english">
+                    Major Technology Developments
+                </h3>
+
+
+                <a
+                    href="technology-video-1.html"
+                    class="watch-button">
+
+                    <span class="tamil">
+                        ▶ வீடியோ பார்க்க
+                    </span>
+
+                    <span class="english">
+                        ▶ Watch Video
+                    </span>
+
+                </a>
+
+            </div>
+
+        </article>
+
+
+        <!-- VIDEO 2 -->
+        <article class="video-card">
+
+            <div class="video-thumbnail">
+
+                <img
+                    src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=900&q=80"
+                    alt="Technology Video 2"
+                >
+
+                <div class="play-button">
+                    ▶
+                </div>
+
+            </div>
+
+
+            <div class="video-content">
+
+                <h3 class="tamil">
+                    செயற்கை நுண்ணறிவு தொழில்நுட்பத்தின் புதிய முன்னேற்றங்கள்
+                </h3>
+
+                <h3 class="english">
+                    Latest Developments in Artificial Intelligence
+               

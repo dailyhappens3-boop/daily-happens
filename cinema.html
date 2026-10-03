@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>சினிமா செய்திகள் | Cinema News | Daily Happens</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+            color: #222;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background: #111;
+            color: white;
+            padding: 8px 20px;
+        }
+
+        .top-bar-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 18px;
+        }
+
+        .top-bar a {
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .instagram {
+            color: #E4405F !important;
+        }
+
+        .facebook {
+            color: #1877F2 !important;
+        }
+
+        .x-twitter {
+            color: #fff !important;
+        }
+
+        .youtube {
+            color: #FF0000 !important;
+        }
+
+        /* HEADER */
+        .header {
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 180px;
+            height: auto;
+        }
+
+        /* LANGUAGE */
+        .language-switch {
+            text-align: center;
+            padding: 12px;
+            background: #fafafa;
+            border-bottom: 1px solid #eee;
+        }
+
+        .language-switch button {
+            border: none;
+            background: transparent;
+            padding: 7px 14px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .language-switch button.active {
+            background: #b40000;
+            color: white;
+            border-radius: 4px;
+        }
+
+        /* NAVIGATION */
+        .navigation {
+            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-content a {
+            position: relative;
+            flex: 0 0 auto;
+            padding: 16px 18px;
+            color: #222;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-content a:hover {
+            color: #b40000;
+            background: #fafafa;
+        }
+
+        .nav-content a::after {
+            content: "";
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 0;
+            height: 3px;
+            background: #b40000;
+            transform: scaleX(0);
+            transition: 0.25s;
+        }
+
+        .nav-content a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* BREAKING NEWS */
+        .breaking {
+            background: #b40000;
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+        }
+
+        .breaking-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 0 15px;
+        }
+
+        .breaking-title {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .ticker {
+            white-space: nowrap;
+            animation: tickerMove 18s linear infinite;
+        }
+
+        @keyframes tickerMove {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* PAGE */
+        .page {
+            max-width: 1200px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            margin-bottom: 30px;
+        }
+
+        .page-title h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #777;
+            font-size: 16px;
+        }
+
+        /* SECTION */
+        .section {
+            margin-bottom: 55px;
+        }
+
+        .section-title {
+            font-size: 25px;
+            border-left: 5px solid #b40000;
+            padding-left: 12px;
+            margin-bottom: 22px;
+        }
+
+        /* NEWS GRID */
+        .news-grid,
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-content {
+            padding: 18px;
+        }
+
+        .card-content h3 {
+            font-size: 19px;
+            line-height: 1.45;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* VIDEO CARD */
+        .video-card {
+            position: relative;
+        }
+
+        .video-image {
+            position: relative;
+        }
+
+        .play-button {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 58px;
+            height: 58px;
+            background: rgba(180, 0, 0, 0.95);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            padding-left: 4px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 15px;
+        }
+
+        .footer-social a {
+            text-decoration: none;
+            margin: 0 8px;
+            font-weight: bold;
+        }
+
+        /* LANGUAGE */
+        .english {
+            display: none;
+        }
+
+        body.english-mode .tamil {
+            display: none !important;
+        }
+
+        body.english-mode .english {
+            display: block !important;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+
+            .news-grid,
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .top-bar-content {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .logo {
+                width: 140px;
+            }
+
+            .nav-content a {
+                padding: 13px 14px;
+                font-size: 13px;
+            }
+
+            .page {
+                margin: 30px auto;
+            }
+
+            .page-title h1 {
+                font-size: 27px;
+            }
+
+            .news-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-image {
+                height: 220px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP SOCIAL BAR -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+
+            <a class="instagram"
+               href="https://instagram.com/daily.happens"
+               target="_blank">
+                Instagram
+            </a>
+
+            <a class="facebook"
+               href="https://facebook.com/share/196dqkZQZC/"
+               target="_blank">
+                Facebook
+            </a>
+
+            <a class="x-twitter"
+               href="https://x.com/DailyHappean"
+               target="_blank">
+                X
+            </a>
+
+            <a class="youtube"
+               href="https://youtube.com/@daily.happens"
+               target="_blank">
+                YouTube
+            </a>
+
+        </div>
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="index.html">
+                <img src="logo.jpg"
+                     alt="Daily Happens"
+                     class="logo">
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- LANGUAGE -->
+    <div class="language-switch">
+
+        <button id="tamilBtn" class="active">
+            தமிழ்
+        </button>
+
+        <button id="englishBtn">
+            English
+        </button>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <nav class="navigation">
+
+        <div class="nav-content">
+
+            <a href="index.html">
+                <span class="tamil">முகப்பு</span>
+                <span class="english">Home</span>
+            </a>
+
+            <a href="index.html#latest">
+                <span class="tamil">சமீபத்திய செய்திகள்</span>
+                <span class="english">Latest</span>
+            </a>
+
+            <a href="tamil-nadu.html">
+                <span class="tamil">தமிழ்நாடு</span>
+                <span class="english">Tamil Nadu</span>
+            </a>
+
+            <a href="india.html">
+                <span class="tamil">இந்தியா</span>
+                <span class="english">India</span>
+            </a>
+
+            <a href="world.html">
+                <span class="tamil">உலகம்</span>
+                <span class="english">World</span>
+            </a>
+
+            <a href="politics.html">
+                <span class="tamil">அரசியல்</span>
+                <span class="english">Politics</span>
+            </a>
+
+            <a href="business.html">
+                <span class="tamil">வணிகம்</span>
+                <span class="english">Business</span>
+            </a>
+
+            <a href="technology.html">
+                <span class="tamil">தொழில்நுட்பம்</span>
+                <span class="english">Technology</span>
+            </a>
+
+            <a href="sports.html">
+                <span class="tamil">விளையாட்டு</span>
+                <span class="english">Sports</span>
+            </a>
+
+            <a href="cinema.html">
+                <span class="tamil">சினிமா</span>
+                <span class="english">Cinema</span>
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- BREAKING NEWS -->
+    <div class="breaking">
+
+        <div class="breaking-inner">
+
+            <div class="breaking-title">
+
+                <span class="tamil">
+                    முக்கிய செய்தி
+                </span>
+
+                <span class="english">
+                    BREAKING
+                </span>
+
+            </div>
+
+            <div class="ticker">
+
+                <span class="tamil">
+                    சினிமா உலகின் முக்கிய செய்திகள் Daily Happens-ல் தொடர்ந்து வெளியாகின்றன
+                </span>
+
+                <span class="english">
+                    Latest cinema news and entertainment updates on Daily Happens
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="page">
+
+
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+
+            <h1 class="tamil">
+                சினிமா செய்திகள்
+            </h1>
+
+            <h1 class="english">
+                Cinema News
+            </h1>
+
+            <p class="tamil">
+                திரைப்படங்கள், நடிகர்கள், இயக்குநர்கள் மற்றும் சினிமா உலகின்
+                முக்கிய செய்திகளை இங்கே காணலாம்.
+            </p>
+
+            <p class="english">
+                Latest updates from movies, actors, directors and the
+                entertainment industry.
+            </p>
+
+        </div>
+
+
+        <!-- CINEMA NEWS -->
+        <section class="section">
+
+            <h2 class="section-title">
+
+                <span class="tamil">
+                    சினிமா செய்திகள்
+                </span>
+
+                <span class="english">
+                    Cinema News
+                </span>
+
+            </h2>
+
+
+            <div class="news-grid">
+
+
+                <!-- NEWS 1 -->
+                <a href="cinema-news-1.html"
+                   class="card-link">
+
+                    <article class="card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80"
+                            alt="Cinema News"
+                            class="card-image">
+
+                        <div class="card-content">
+
+                            <h3 class="tamil">
+                                புதிய திரைப்படம் தொடர்பான முக்கிய அறிவிப்பு
+                            </h3>
+
+                            <h3 class="english">
+                                Major Announcement About an Upcoming Film
+                            </h3>
+
+                            <p class="tamil">
+                                புதிய திரைப்படம் தொடர்பான சமீபத்திய தகவல்கள் மற்றும்
+                                அதிகாரப்பூர்வ அறிவிப்புகள்.
+                            </p>
+
+                            <p class="english">
+                                Latest information and official updates about
+                                an upcoming film.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </a>
+
+
+                <!-- NEWS 2 -->
+                <a href="cinema-news-2.html"
+                   class="card-link">
+
+                    <article class="card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=900&q=80"
+                            alt="Cinema News"
+                            class="card-image">
+
+                        <div class="card-content">
+
+                            <h3 class="tamil">
+                                முன்னணி நடிகரின் புதிய படத்தின் அப்டேட்
+                            </h3>
+
+                            <h3 class="english">
+                                Update on a Leading Actor's New Film
+                            </h3>
+
+                            <p class="tamil">
+                                திரைப்படத்தின் புதிய தகவல்கள் மற்றும்
+                                ரசிகர்களுக்கான முக்கிய அப்டேட்கள்.
+                            </p>
+
+                            <p class="english">
+                                New film information and important updates
+                                for movie fans.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </a>
+
+
+                <!-- NEWS 3 -->
+                <a href="cinema-news-3.html"
+                   class="card-link">
+
+                    <article class="card">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80"
+                            alt="Cinema News"
+                            class="card-image">
+
+                        <div class="card-content">
+
+                            <h3 class="tamil">
+                                புதிய திரைப்படத்தின் வெளியீட்டு தேதி அறிவிப்பு
+                            </h3>
+
+                            <h3 class="english">
+                                Release Date Announced for a New Film
+                            </h3>
+
+                            <p class="tamil">
+                                புதிய திரைப்படத்தின் வெளியீடு மற்றும்
+                                சினிமா தொடர்பான முக்கிய தகவல்கள்.
+                            </p>
+
+                            <p class="english">
+                                Latest information about the film's release
+                                and cinema updates.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- CINEMA VIDEOS -->
+        <section class="section">
+
+            <h2 class="section-title">
+
+                <span class="tamil">
+                    சினிமா வீடியோக்கள்
+                </span>
+
+                <span class="english">
+                    Cinema Videos
+                </span>
+
+            </h2>
+
+
+            <div class="video-grid">
+
+
+                <!-- VIDEO 1 -->
+                <a href="cinema-video-1.html"
+                   class="card-link">
+
+                    <article class="card video-card">
+
+                        <div class="video-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80"
+                                alt="Cinema Video"
+                                class="card-image">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                        </div>
+
+                        <div class="card-content">
+
+                            <h3 class="tamil">
+                                சினிமா உலகின் முக்கிய வீடியோ செய்தி
+                            </h3>
+
+                            <h3 class="english">
+                                Latest Cinema Video News
+                            </h3>
+
+                            <p class="tamil">
+                                சினிமா தொடர்பான முக்கிய வீடியோ அப்டேட்.
+                            </p>
+
+                            <p class="english">
+                                Important video update from the cinema world.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </a>
+
+
+                <!-- VIDEO 2 -->
+                <a href="cinema-video-2.html"
+                   class="card-link">
+
+                    <article class="card video-card">
+
+                        <div class="video-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=900&q=80"
+                                alt="Cinema Video"
+                                class="card-image">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                        </div>
+
+                        <div class="card-content">
+
+                            <h3 class="tamil">
+                                திரைப்படம் தொடர்பான புதிய வீடியோ
+                            </h3>
+
+                            <h3 class="english">
+                                New Video Update About a Film
+                            </h3>
+
+                            <p class="tamil">
+                                திரைப்படம் மற்றும் நடிகர்கள் தொடர்பான வீடியோ.
+                            </p>
+
+                            <p class="english">
+                                Video update about a film and its actors.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </a>
+
+
+                <!-- VIDEO 3 -->
+                <a href="cinema-video-3.html"
+                   class="card-link">
+
+                    <article class="card video-card">
+
+                        <div class="video-image">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80"
+                                alt="Cinema Video"
+                                class="card-image">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                        </div>
+
+                        <div class="card-content">
+
+                            <h3 class="tamil">
+                                சினிமா உலகின் சமீபத்திய வீடியோ அப்டேட்
+                            </h3>
+
+                            <h3 class="english">
+                                Latest Cinema Video Update
+                            </h3>
+
+                            <p class="tamil">
+                                Daily Happens சினிமா வீடியோ செய்தி.
+                            </p>
+
+                            <p class="english">
+                                Daily Happens cinema video news update.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 Daily Happens — Independent News Channel
+        </p>
+
+        <div class="footer-social">
+
+            <a class="instagram"
+               href="https://instagram.com/daily.happens"
+               target="_blank">
+                Instagram
+            </a>
+
+            <a class="facebook"
+               href="https://facebook.com/share/196dqkZQZC/"
+               target="_blank">
+                Facebook
+            </a>
+
+            <a class="x-twitter"
+               href="https://x.com/DailyHappean"
+               target="_blank">
+                X
+            </a>
+
+            <a class="youtube"
+               href="https://youtube.com/@daily.happens"
+               target="_blank">
+                YouTube
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <!-- LANGUAGE SCRIPT -->
+    <script>
+
+        const tamilBtn = document.getElementById("tamilBtn");
+        const englishBtn = document.getElementById("englishBtn");
+
+
+        function showTamil() {
+
+            document.body.classList.remove("english-mode");
+
+            tamilBtn.classList.add("active");
+            englishBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "tamil"
+            );
+        }
+
+
+        function showEnglish() {
+
+            document.body.classList.add("english-mode");
+
+            englishBtn.classList.add("active");
+            tamilBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "english"
+            );
+        }
+
+
+        tamilBtn.addEventListener(
+            "click",
+            showTamil
+        );
+
+
+        englishBtn.addEventListener(
+            "click",
+            showEnglish
+        );
+
+
+        if (
+            localStorage.getItem("dailyHappensLanguage")
+            === "english"
+        ) {
+
+            showEnglish();
+
+        } else {
+
+            showTamil();
+
+        }
+
+    </script>
+
+</body>
+</html>

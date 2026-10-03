@@ -1,0 +1,21 @@
+DAILY HAPPENS NAVIGATION
+8 category pages:
+tamil-nadu.html
+india.html
+world.html
+politics.html
+business.html
+technology.html
+sports.html
+cinema.html
+
+Each category has 3 full article pages:
+CATEGORY-news-1.html
+CATEGORY-news-2.html
+CATEGORY-news-3.html
+
+Every page links to index.html and every category page.
+Every category card links to its matching full article.
+Every article has a Back to Category link.
+Videos stay inside category pages; there is no separate Videos navigation item.
+Keep all HTML files and logo.jpg in the same folder.

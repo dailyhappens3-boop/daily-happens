@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>விளையாட்டு செய்திகள் | Daily Happens</title>
+
+    <meta name="description"
+        content="விளையாட்டு தொடர்பான முக்கிய செய்திகள் மற்றும் தகவல்களை Daily Happens மூலம் தெரிந்து கொள்ளுங்கள்.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        /* TOP SOCIAL BAR */
+        .top-bar {
+            background: #111;
+            color: #fff;
+            padding: 8px 20px;
+        }
+
+        .top-bar-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-link {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .instagram {
+            color: #e1306c;
+        }
+
+        .facebook {
+            color: #1877f2;
+        }
+
+        .x-twitter {
+            color: #fff;
+        }
+
+        .youtube {
+            color: #ff0000;
+        }
+
+        /* HEADER */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            min-height: 125px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .logo {
+            width: 180px;
+            max-width: 80%;
+            height: auto;
+            display: block;
+        }
+
+        /* LANGUAGE */
+        .language-switch {
+            background: #fff;
+            padding: 10px 15px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+
+        .language-switch button {
+            border: 1px solid #ccc;
+            background: #fff;
+            padding: 6px 12px;
+            margin-left: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .language-switch button.active {
+            background: #b40000;
+            color: #fff;
+            border-color: #b40000;
+        }
+
+        /* NAVIGATION */
+        .navigation {
+            width: 100%;
+            background: #fff;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-content a {
+            position: relative;
+            flex: 0 0 auto;
+            padding: 15px 18px;
+            color: #222;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .nav-content a:hover {
+            color: #b40000;
+            background: #fafafa;
+        }
+
+        .nav-content a::after {
+            content: "";
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 0;
+            height: 3px;
+            background: #b40000;
+            transform: scaleX(0);
+            transition: transform 0.25s ease;
+        }
+
+        .nav-content a:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* BREAKING NEWS */
+        .breaking {
+            background: #b40000;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .breaking-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .breaking-label {
+            background: #8d0000;
+            padding: 10px 18px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .breaking-text {
+            padding: 10px 20px;
+            white-space: nowrap;
+            animation: ticker 18s linear infinite;
+        }
+
+        @keyframes ticker {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* PAGE */
+        .page-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            color: #171717;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #777;
+            font-size: 16px;
+        }
+
+        /* NEWS GRID */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .news-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-tag {
+            display: inline-block;
+            background: #b40000;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .news-content h2 {
+            font-size: 21px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .news-content p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #b40000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* VIDEOS */
+        .section-title {
+            margin-top: 55px;
+            margin-bottom: 25px;
+            border-left: 5px solid #b40000;
+            padding-left: 12px;
+        }
+
+        .section-title h2 {
+            font-size: 27px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .video-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .video-image {
+            position: relative;
+        }
+
+        .video-image img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(180, 0, 0, 0.95);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .video-content {
+            padding: 18px;
+        }
+
+        .video-content h3 {
+            font-size: 19px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .video-content a {
+            color: #b40000;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #111;
+            color: #ddd;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        .footer p {
+            margin-bottom: 8px;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* LANGUAGE */
+        .english {
+            display: none;
+        }
+
+        body.english-mode .tamil {
+            display: none !important;
+        }
+
+        body.english-mode .english {
+            display: block !important;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+
+            .news-grid,
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .top-bar-inner {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .header-inner {
+                min-height: 100px;
+            }
+
+            .logo {
+                width: 145px;
+            }
+
+            .nav-content a {
+                padding: 13px 14px;
+                font-size: 13px;
+            }
+
+            .page-container {
+                margin: 25px auto;
+                padding: 0 12px;
+            }
+
+            .page-title h1 {
+                font-size: 28px;
+            }
+
+            .news-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .news-card img {
+                height: 220px;
+            }
+
+            .language-switch {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP SOCIAL BAR -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+
+            <a class="social-link instagram"
+               href="https://instagram.com/daily.happens"
+               target="_blank">
+                Instagram
+            </a>
+
+            <a class="social-link facebook"
+               href="https://facebook.com/share/196dqkZQZC/"
+               target="_blank">
+                Facebook
+            </a>
+
+            <a class="social-link x-twitter"
+               href="https://x.com/DailyHappean"
+               target="_blank">
+                X
+            </a>
+
+            <a class="social-link youtube"
+               href="https://youtube.com/@daily.happens"
+               target="_blank">
+                YouTube
+            </a>
+
+        </div>
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="index.html">
+                <img
+                    src="logo.jpg"
+                    alt="Daily Happens"
+                    class="logo"
+                >
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- LANGUAGE SWITCH -->
+    <div class="language-switch">
+
+        <button id="tamilBtn" class="active">
+            தமிழ்
+        </button>
+
+        <button id="englishBtn">
+            English
+        </button>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <nav class="navigation">
+
+        <div class="nav-content">
+
+            <a href="index.html">
+                <span class="tamil">முகப்பு</span>
+                <span class="english">Home</span>
+            </a>
+
+            <a href="index.html#latest">
+                <span class="tamil">சமீபத்திய செய்திகள்</span>
+                <span class="english">Latest</span>
+            </a>
+
+            <a href="tamil-nadu.html">
+                <span class="tamil">தமிழ்நாடு</span>
+                <span class="english">Tamil Nadu</span>
+            </a>
+
+            <a href="india.html">
+                <span class="tamil">இந்தியா</span>
+                <span class="english">India</span>
+            </a>
+
+            <a href="world.html">
+                <span class="tamil">உலகம்</span>
+                <span class="english">World</span>
+            </a>
+
+            <a href="politics.html">
+                <span class="tamil">அரசியல்</span>
+                <span class="english">Politics</span>
+            </a>
+
+            <a href="business.html">
+                <span class="tamil">வணிகம்</span>
+                <span class="english">Business</span>
+            </a>
+
+            <a href="technology.html">
+                <span class="tamil">தொழில்நுட்பம்</span>
+                <span class="english">Technology</span>
+            </a>
+
+            <a href="sports.html">
+                <span class="tamil">விளையாட்டு</span>
+                <span class="english">Sports</span>
+            </a>
+
+            <a href="cinema.html">
+                <span class="tamil">சினிமா</span>
+                <span class="english">Cinema</span>
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- BREAKING NEWS -->
+    <section class="breaking">
+
+        <div class="breaking-inner">
+
+            <div class="breaking-label">
+
+                <span class="tamil">
+                    முக்கிய செய்தி
+                </span>
+
+                <span class="english">
+                    BREAKING
+                </span>
+
+            </div>
+
+            <div class="breaking-text">
+
+                <span class="tamil">
+                    விளையாட்டு உலகின் முக்கிய தகவல்கள் வெளியாகியுள்ளன
+                </span>
+
+                <span class="english">
+                    Important updates from the world of sports
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE CONTENT -->
+    <main class="page-container">
+
+        <div class="page-title">
+
+            <h1>
+
+                <span class="tamil">
+                    விளையாட்டு செய்திகள்
+                </span>
+
+                <span class="english">
+                    Sports News
+                </span>
+
+            </h1>
+
+            <p>
+
+                <span class="tamil">
+                    விளையாட்டு உலகின் முக்கிய செய்திகள் மற்றும் தகவல்கள்
+                </span>
+
+                <span class="english">
+                    Latest news and updates from the world of sports
+                </span>
+
+            </p>
+
+        </div>
+
+
+        <!-- NEWS -->
+        <div class="news-grid">
+
+            <!-- NEWS 1 -->
+            <article class="news-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
+                    alt="Sports News"
+                >
+
+                <div class="news-content">
+
+                    <span class="news-tag">
+
+                        <span class="tamil">
+                            விளையாட்டு
+                        </span>
+
+                        <span class="english">
+                            SPORTS
+                        </span>
+
+                    </span>
+
+                    <h2>
+
+                        <span class="tamil">
+                            விளையாட்டு உலகில் முக்கிய தகவல்கள் வெளியாகின
+                        </span>
+
+                        <span class="english">
+                            Important Updates from the Sports World
+                        </span>
+
+                    </h2>
+
+                    <p>
+
+                        <span class="tamil">
+                            விளையாட்டு தொடர்பான முக்கிய செய்திகள் மற்றும்
+                            தகவல்களை இங்கே தெரிந்து கொள்ளுங்கள்.
+                        </span>
+
+                        <span class="english">
+                            Get the latest important sports news and updates here.
+                        </span>
+
+                    </p>
+
+                    <a href="sports-news-1.html" class="read-more">
+
+                        <span class="tamil">
+                            முழு செய்தியைப் படிக்க →
+                        </span>
+
+                        <span class="english">
+                            Read Full Story →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- NEWS 2 -->
+            <article class="news-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=900&q=80"
+                    alt="Sports News"
+                >
+
+                <div class="news-content">
+
+                    <span class="news-tag">
+
+                        <span class="tamil">
+                            விளையாட்டு
+                        </span>
+
+                        <span class="english">
+                            SPORTS
+                        </span>
+
+                    </span>
+
+                    <h2>
+
+                        <span class="tamil">
+                            போட்டிகள் மற்றும் வீரர்கள் குறித்த புதிய தகவல்கள்
+                        </span>
+
+                        <span class="english">
+                            New Updates on Matches and Athletes
+                        </span>
+
+                    </h2>
+
+                    <p>
+
+                        <span class="tamil">
+                            போட்டிகள் மற்றும் வீரர்கள் தொடர்பான தகவல்களை
+                            Daily Happens மூலம் தெரிந்து கொள்ளுங்கள்.
+                        </span>
+
+                        <span class="english">
+                            Follow match and athlete updates through Daily Happens.
+                        </span>
+
+                    </p>
+
+                    <a href="sports-news-2.html" class="read-more">
+
+                        <span class="tamil">
+                            முழு செய்தியைப் படிக்க →
+                        </span>
+
+                        <span class="english">
+                            Read Full Story →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- NEWS 3 -->
+            <article class="news-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
+                    alt="Sports News"
+                >
+
+                <div class="news-content">
+
+                    <span class="news-tag">
+
+                        <span class="tamil">
+                            விளையாட்டு
+                        </span>
+
+                        <span class="english">
+                            SPORTS
+                        </span>
+
+                    </span>
+
+                    <h2>
+
+                        <span class="tamil">
+                            விளையாட்டு போட்டிகள் குறித்து புதிய தகவல்
+                        </span>
+
+                        <span class="english">
+                            New Update on Sporting Events
+                        </span>
+
+                    </h2>
+
+                    <p>
+
+                        <span class="tamil">
+                            நடைபெறும் மற்றும் வரவிருக்கும் விளையாட்டு
+                            போட்டிகள் தொடர்பான தகவல்கள்.
+                        </span>
+
+                        <span class="english">
+                            Updates on ongoing and upcoming sporting events.
+                        </span>
+
+                    </p>
+
+                    <a href="sports-news-3.html" class="read-more">
+
+                        <span class="tamil">
+                            முழு செய்தியைப் படிக்க →
+                        </span>
+
+                        <span class="english">
+                            Read Full Story →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- VIDEOS -->
+        <div class="section-title">
+
+            <h2>
+
+                <span class="tamil">
+                    விளையாட்டு வீடியோக்கள்
+                </span>
+
+                <span class="english">
+                    Sports Videos
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="video-grid">
+
+            <!-- VIDEO 1 -->
+            <article class="video-card">
+
+                <div class="video-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
+                        alt="Sports Video"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-content">
+
+                    <h3>
+
+                        <span class="tamil">
+                            விளையாட்டு உலகின் முக்கிய அப்டேட்கள்
+                        </span>
+
+                        <span class="english">
+                            Important Sports Updates
+                        </span>
+
+                    </h3>
+
+                    <a href="sports-video-1.html">
+
+                        <span class="tamil">
+                            வீடியோ பார்க்க →
+                        </span>
+
+                        <span class="english">
+                            Watch Video →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 2 -->
+            <article class="video-card">
+
+                <div class="video-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=900&q=80"
+                        alt="Sports Video"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-content">
+
+                    <h3>
+
+                        <span class="tamil">
+                            போட்டிகள் தொடர்பான முக்கிய தகவல்கள்
+                        </span>
+
+                        <span class="english">
+                            Key Updates on Sporting Events
+                        </span>
+
+                    </h3>
+
+                    <a href="sports-video-2.html">
+
+                        <span class="tamil">
+                            வீடியோ பார்க்க →
+                        </span>
+
+                        <span class="english">
+                            Watch Video →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- VIDEO 3 -->
+            <article class="video-card">
+
+                <div class="video-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
+                        alt="Sports Video"
+                    >
+
+                    <div class="play-button">
+                        ▶
+                    </div>
+
+                </div>
+
+                <div class="video-content">
+
+                    <h3>
+
+                        <span class="tamil">
+                            விளையாட்டு செய்திகள் வீடியோவில்
+                        </span>
+
+                        <span class="english">
+                            Sports News in Video
+                        </span>
+
+                    </h3>
+
+                    <a href="sports-video-3.html">
+
+                        <span class="tamil">
+                            வீடியோ பார்க்க →
+                        </span>
+
+                        <span class="english">
+                            Watch Video →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <p>
+            <strong>Daily Happens</strong>
+        </p>
+
+        <p>
+
+            <span class="tamil">
+                சுயாதீன செய்தி சேனல்
+            </span>
+
+            <span class="english">
+                Independent News Channel
+            </span>
+
+        </p>
+
+        <p>
+            © 2026 Daily Happens. All Rights Reserved.
+        </p>
+
+        <p>
+            <a href="https://dailyhappens.in">
+                dailyhappens.in
+            </a>
+        </p>
+
+    </footer>
+
+
+    <!-- LANGUAGE SCRIPT -->
+    <script>
+
+        const tamilBtn = document.getElementById("tamilBtn");
+        const englishBtn = document.getElementById("englishBtn");
+
+
+        function showTamil() {
+
+            document.body.classList.remove("english-mode");
+
+            tamilBtn.classList.add("active");
+            englishBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "tamil"
+            );
+
+        }
+
+
+        function showEnglish() {
+
+            document.body.classList.add("english-mode");
+
+            englishBtn.classList.add("active");
+            tamilBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "english"
+            );
+
+        }
+
+
+        tamilBtn.addEventListener(
+            "click",
+            showTamil
+        );
+
+
+        englishBtn.addEventListener(
+            "click",
+            showEnglish
+        );
+
+
+        if (
+            localStorage.getItem(
+                "dailyHappensLanguage"
+            ) === "english"
+        ) {
+
+            showEnglish();
+
+        } else {
+
+            showTamil();
+
+        }
+
+    </script>
+
+</body>
+</html>

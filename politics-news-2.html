@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>அரசியல் செய்தி 2 | Daily Happens</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .top-bar {
+            background: #111827;
+            color: white;
+            padding: 8px 20px;
+        }
+
+        .top-bar-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .social-links a {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .instagram {
+            color: #e1306c;
+        }
+
+        .facebook {
+            color: #1877f2;
+        }
+
+        .x-twitter {
+            color: #ffffff;
+        }
+
+        .youtube {
+            color: #ff0000;
+        }
+
+        .header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            min-height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo {
+            width: 180px;
+            max-width: 180px;
+            height: auto;
+            display: block;
+        }
+
+        .language-switch {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 6px;
+        }
+
+        .language-switch button {
+            border: 1px solid #cccccc;
+            background: white;
+            padding: 7px 12px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+        .language-switch button.active {
+            background: #b40000;
+            color: white;
+            border-color: #b40000;
+        }
+
+        .navigation {
+            width: 100%;
+            background: #ffffff;
+            border-top: 1px solid #eeeeee;
+            border-bottom: 1px solid #dddddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-content {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-content > a {
+            position: relative;
+            flex: 0 0 auto;
+            padding: 16px 18px;
+            color: #222;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: 0.25s ease;
+        }
+
+        .nav-content > a:hover {
+            color: #b40000;
+            background: #fafafa;
+        }
+
+        .nav-content > a::after {
+            content: "";
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 0;
+            height: 3px;
+            background: #b40000;
+            transform: scaleX(0);
+            transition: transform 0.25s ease;
+        }
+
+        .nav-content > a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .breaking-news {
+            background: #b40000;
+            color: white;
+            overflow: hidden;
+        }
+
+        .breaking-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            min-height: 42px;
+        }
+
+        .breaking-label {
+            background: #8b0000;
+            padding: 9px 16px;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+            z-index: 2;
+        }
+
+        .breaking-text {
+            padding-left: 20px;
+            white-space: nowrap;
+            animation: ticker 18s linear infinite;
+            font-size: 14px;
+        }
+
+        @keyframes ticker {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        .article-container {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: #b40000;
+            color: white;
+            padding: 6px 13px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            border-radius: 3px;
+        }
+
+        .article-title {
+            font-size: 40px;
+            line-height: 1.25;
+            margin-bottom: 15px;
+            color: #111827;
+        }
+
+        .article-meta {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        .article-image {
+            width: 100%;
+            height: auto;
+            max-height: 550px;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .article-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #eeeeee;
+        }
+
+        .article-content p {
+            font-size: 17px;
+            color: #444;
+            margin-bottom: 18px;
+        }
+
+        .article-note {
+            border-left: 4px solid #b40000;
+            padding: 12px 16px;
+            background: #fafafa;
+            color: #666;
+            font-size: 13px;
+            margin-top: 25px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            background: #111827;
+            color: white;
+            padding: 11px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-button:hover {
+            background: #b40000;
+        }
+
+        footer {
+            background: #111827;
+            color: white;
+            margin-top: 60px;
+            padding: 35px 20px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            width: 130px;
+            margin-bottom: 15px;
+        }
+
+        .footer-text {
+            color: #ccc;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 15px;
+        }
+
+        .footer-social a {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .copyright {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .english {
+            display: none;
+        }
+
+        body.english-mode .tamil {
+            display: none !important;
+        }
+
+        body.english-mode .english {
+            display: block !important;
+        }
+
+        @media (max-width: 700px) {
+
+            .top-bar {
+                padding: 8px 12px;
+            }
+
+            .top-bar-inner {
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .header-inner {
+                min-height: 100px;
+            }
+
+            .logo {
+                width: 140px;
+            }
+
+            .language-switch {
+                right: 10px;
+                top: 10px;
+                transform: none;
+            }
+
+            .language-switch button {
+                padding: 5px 8px;
+                font-size: 10px;
+            }
+
+            .nav-content {
+                padding: 0 5px;
+            }
+
+            .nav-content > a {
+                padding: 13px 14px;
+                font-size: 13px;
+            }
+
+            .nav-content > a::after {
+                left: 14px;
+                right: 14px;
+            }
+
+            .breaking-label {
+                padding: 8px 10px;
+                font-size: 11px;
+            }
+
+            .breaking-text {
+                font-size: 12px;
+                padding-left: 12px;
+            }
+
+            .article-container {
+                margin: 30px auto;
+                padding: 0 15px;
+            }
+
+            .article-title {
+                font-size: 28px;
+            }
+
+            .article-content {
+                padding: 20px;
+            }
+
+            .article-content p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+
+        <div class="top-bar-inner">
+
+            <div>
+                <span class="tamil">டெய்லி ஹேப்பன்ஸ்</span>
+                <span class="english">Daily Happens</span>
+            </div>
+
+            <div class="social-links">
+
+                <a href="https://instagram.com/daily.happens"
+                   target="_blank"
+                   class="instagram">
+                    Instagram
+                </a>
+
+                <a href="https://facebook.com/share/196dqkZQZC/"
+                   target="_blank"
+                   class="facebook">
+                    Facebook
+                </a>
+
+                <a href="https://x.com/DailyHappean"
+                   target="_blank"
+                   class="x-twitter">
+                    X
+                </a>
+
+                <a href="https://youtube.com/@daily.happens"
+                   target="_blank"
+                   class="youtube">
+                    YouTube
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="index.html">
+                <img src="logo.jpg"
+                     alt="Daily Happens"
+                     class="logo">
+            </a>
+
+            <div class="language-switch">
+
+                <button id="tamilBtn" class="active">
+                    தமிழ்
+                </button>
+
+                <button id="englishBtn">
+                    English
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+    <nav class="navigation">
+
+        <div class="nav-content">
+
+            <a href="index.html">
+                <span class="tamil">முகப்பு</span>
+                <span class="english">Home</span>
+            </a>
+
+            <a href="index.html#latest">
+                <span class="tamil">சமீபத்திய செய்திகள்</span>
+                <span class="english">Latest</span>
+            </a>
+
+            <a href="tamil-nadu.html">
+                <span class="tamil">தமிழ்நாடு</span>
+                <span class="english">Tamil Nadu</span>
+            </a>
+
+            <a href="india.html">
+                <span class="tamil">இந்தியா</span>
+                <span class="english">India</span>
+            </a>
+
+            <a href="world.html">
+                <span class="tamil">உலகம்</span>
+                <span class="english">World</span>
+            </a>
+
+            <a href="politics.html">
+                <span class="tamil">அரசியல்</span>
+                <span class="english">Politics</span>
+            </a>
+
+            <a href="business.html">
+                <span class="tamil">வணிகம்</span>
+                <span class="english">Business</span>
+            </a>
+
+            <a href="technology.html">
+                <span class="tamil">தொழில்நுட்பம்</span>
+                <span class="english">Technology</span>
+            </a>
+
+            <a href="sports.html">
+                <span class="tamil">விளையாட்டு</span>
+                <span class="english">Sports</span>
+            </a>
+
+            <a href="cinema.html">
+                <span class="tamil">சினிமா</span>
+                <span class="english">Cinema</span>
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- BREAKING NEWS -->
+    <div class="breaking-news">
+
+        <div class="breaking-inner">
+
+            <div class="breaking-label">
+
+                <span class="tamil">முக்கிய செய்தி</span>
+                <span class="english">BREAKING</span>
+
+            </div>
+
+            <div class="breaking-text">
+
+                <span class="tamil">
+                    அரசியல் தொடர்பான சமீபத்திய செய்திகளை டெய்லி ஹேப்பன்ஸ் வழங்குகிறது
+                </span>
+
+                <span class="english">
+                    Daily Happens brings you the latest political news
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ARTICLE -->
+    <main class="article-container">
+
+        <div class="article-category">
+
+            <span class="tamil">அரசியல்</span>
+            <span class="english">POLITICS</span>
+
+        </div>
+
+
+        <h1 class="article-title">
+
+            <span class="tamil">
+                அரசியல் நிகழ்வுகள் குறித்து புதிய தகவல்
+            </span>
+
+            <span class="english">
+                New Update on Political Developments
+            </span>
+
+        </h1>
+
+
+        <div class="article-meta">
+
+            <span class="tamil">
+                டெய்லி ஹேப்பன்ஸ் • அரசியல்
+            </span>
+
+            <span class="english">
+                Daily Happens • Politics
+            </span>
+
+        </div>
+
+
+        <!-- IMAGE -->
+        <img
+            src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=1200&q=80"
+            alt="Political News"
+            class="article-image"
+        >
+
+
+        <!-- CONTENT -->
+        <div class="article-content">
+
+            <div class="tamil">
+
+                <p>
+                    அரசியல் துறையில் நடைபெறும் முக்கிய நிகழ்வுகள் குறித்து
+                    புதிய தகவல்கள் வெளியாகியுள்ளன.
+                </p>
+
+                <p>
+                    அரசியல் நடவடிக்கைகள், அரசாங்க முடிவுகள், பொது விவகாரங்கள்
+                    மற்றும் மக்கள் தொடர்பான முக்கிய முன்னேற்றங்கள் குறித்து
+                    இந்த செய்தியில் தகவல்கள் இடம்பெறும்.
+                </p>
+
+                <p>
+                    சம்பந்தப்பட்ட அதிகாரப்பூர்வ அறிவிப்புகள் மற்றும் நம்பகமான
+                    செய்தி ஆதாரங்களை அடிப்படையாகக் கொண்டு தகவல்கள்
+                    புதுப்பிக்கப்பட வேண்டும்.
+                </p>
+
+                <div class="article-note">
+                    குறிப்பு: இது மாதிரி செய்தி உள்ளடக்கம்.
+                    உண்மையான செய்தியை வெளியிடுவதற்கு முன்பு தகவல்கள்,
+                    தேதி மற்றும் ஆதாரங்களை சரிபார்க்கவும்.
+                </div>
+
+            </div>
+
+
+            <div class="english">
+
+                <p>
+                    New information has emerged regarding important
+                    developments in the political sector.
+                </p>
+
+                <p>
+                    The story can cover political activities, government
+                    decisions, public affairs and developments affecting
+                    the public.
+                </p>
+
+                <p>
+                    Information should be updated using official announcements
+                    and reliable news sources.
+                </p>
+
+                <div class="article-note">
+                    Note: This is sample news content.
+                    Verify the information, date and sources before
+                    publishing an actual news report.
+                </div>
+
+            </div>
+
+
+            <!-- BACK BUTTON -->
+            <a href="politics.html" class="back-button">
+
+                <span class="tamil">
+                    ← அரசியல் செய்திகளுக்கு திரும்ப
+                </span>
+
+                <span class="english">
+                    ← Back to Politics News
+                </span>
+
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-inner">
+
+            <img src="logo.jpg"
+                 alt="Daily Happens"
+                 class="footer-logo">
+
+            <div class="footer-text">
+
+                <span class="tamil">
+                    சுதந்திரமான செய்தி சேனல்
+                </span>
+
+                <span class="english">
+                    Independent News Channel
+                </span>
+
+            </div>
+
+
+            <div class="footer-social">
+
+                <a href="https://instagram.com/daily.happens"
+                   target="_blank"
+                   class="instagram">
+                    Instagram
+                </a>
+
+                <a href="https://facebook.com/share/196dqkZQZC/"
+                   target="_blank"
+                   class="facebook">
+                    Facebook
+                </a>
+
+                <a href="https://x.com/DailyHappean"
+                   target="_blank"
+                   class="x-twitter">
+                    X
+                </a>
+
+                <a href="https://youtube.com/@daily.happens"
+                   target="_blank"
+                   class="youtube">
+                    YouTube
+                </a>
+
+            </div>
+
+
+            <div class="copyright">
+                © 2026 Daily Happens. All Rights Reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- LANGUAGE SCRIPT -->
+    <script>
+
+        const tamilBtn = document.getElementById("tamilBtn");
+        const englishBtn = document.getElementById("englishBtn");
+
+
+        function showTamil() {
+
+            document.body.classList.remove("english-mode");
+
+            tamilBtn.classList.add("active");
+            englishBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "tamil"
+            );
+
+        }
+
+
+        function showEnglish() {
+
+            document.body.classList.add("english-mode");
+
+            englishBtn.classList.add("active");
+            tamilBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "english"
+            );
+
+        }
+
+
+        tamilBtn.addEventListener(
+            "click",
+            showTamil
+        );
+
+
+        englishBtn.addEventListener(
+            "click",
+            showEnglish
+        );
+
+
+        if (
+            localStorage.getItem("dailyHappensLanguage")
+            === "english"
+        ) {
+
+            showEnglish();
+
+        } else {
+
+            showTamil();
+
+        }
+
+    </script>
+
+</body>
+</html>

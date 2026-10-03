@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>உலக செய்திகள் வீடியோ | Daily Happens</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, "Noto Sans Tamil", sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background: #111;
+            color: white;
+            padding: 8px 20px;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .top-bar a:hover {
+            color: #ff3333;
+        }
+
+        /* HEADER */
+        header {
+            background: white;
+            padding: 18px 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            width: 180px;
+            max-width: 80%;
+        }
+
+        /* LANGUAGE */
+        .language-switch {
+            margin-top: 15px;
+        }
+
+        .language-switch button {
+            padding: 7px 16px;
+            border: 1px solid #b40000;
+            background: white;
+            color: #b40000;
+            cursor: pointer;
+            margin: 0 3px;
+            border-radius: 4px;
+        }
+
+        .language-switch button.active {
+            background: #b40000;
+            color: white;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 14px 16px;
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #b40000;
+        }
+
+        /* BREAKING NEWS */
+        .breaking {
+            display: flex;
+            align-items: center;
+            background: #0d2340;
+            color: white;
+            overflow: hidden;
+        }
+
+        .breaking-label {
+            background: #b40000;
+            padding: 12px 18px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .breaking-text {
+            padding-left: 20px;
+            white-space: nowrap;
+            animation: scrollText 18s linear infinite;
+        }
+
+        @keyframes scrollText {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* VIDEO PAGE */
+        .video-container {
+            max-width: 950px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .video-category {
+            color: #b40000;
+            font-weight: bold;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .video-title {
+            font-size: 40px;
+            line-height: 1.3;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .video-player {
+            width: 100%;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .video-player video {
+            width: 100%;
+            display: block;
+            max-height: 550px;
+        }
+
+        .video-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .video-content p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .video-note {
+            background: #fff4f4;
+            border-left: 4px solid #b40000;
+            padding: 15px;
+            margin-top: 25px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 11px 20px;
+            background: #0d2340;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .back-button:hover {
+            background: #b40000;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 7px 0;
+        }
+
+        /* LANGUAGE */
+        .english {
+            display: none;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            .top-bar {
+                text-align: center;
+                font-size: 12px;
+            }
+
+            .top-bar a {
+                margin-left: 7px;
+            }
+
+            nav ul {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+            }
+
+            nav ul li a {
+                padding: 12px 10px;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            .video-title {
+                font-size: 28px;
+            }
+
+            .video-content {
+                padding: 20px;
+            }
+
+            .video-content p {
+                font-size: 16px;
+                line-height: 1.8;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP SOCIAL BAR -->
+    <div class="top-bar">
+        <a href="https://instagram.com/daily.happens" target="_blank">Instagram</a>
+        <a href="https://facebook.com/share/196dqkZQZC/" target="_blank">Facebook</a>
+        <a href="https://x.com/DailyHappean" target="_blank">X</a>
+        <a href="https://youtube.com/@daily.happens" target="_blank">YouTube</a>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+
+        <img src="logo.jpg" alt="Daily Happens Logo" class="logo">
+
+        <div class="language-switch">
+            <button id="tamilBtn" class="active" onclick="showTamil()">
+                தமிழ்
+            </button>
+
+            <button id="englishBtn" onclick="showEnglish()">
+                English
+            </button>
+        </div>
+
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="latest-news.html">Latest News</a></li>
+            <li><a href="tamil-nadu.html">Tamil Nadu</a></li>
+            <li><a href="india.html">India</a></li>
+            <li><a href="world.html">World</a></li>
+            <li><a href="politics.html">Politics</a></li>
+            <li><a href="business.html">Business</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="sports.html">Sports</a></li>
+            <li><a href="cinema.html">Cinema</a></li>
+            <li><a href="videos.html">Videos</a></li>
+        </ul>
+    </nav>
+
+    <!-- BREAKING NEWS -->
+    <div class="breaking">
+
+        <div class="breaking-label">
+
+            <span class="tamil">
+                முக்கிய செய்திகள்
+            </span>
+
+            <span class="english">
+                BREAKING NEWS
+            </span>
+
+        </div>
+
+        <div class="breaking-text">
+
+            <span class="tamil">
+                உலகளவில் நடைபெறும் முக்கிய நிகழ்வுகள் குறித்து தொடர்ந்து செய்திகள் வெளியாகி வருகின்றன.
+            </span>
+
+            <span class="english">
+                Updates continue to emerge on major developments around the world.
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- VIDEO -->
+    <main class="video-container">
+
+        <div class="video-category">
+
+            <span class="tamil">
+                உலக செய்திகள்
+            </span>
+
+            <span class="english">
+                World News
+            </span>
+
+        </div>
+
+        <h1 class="video-title tamil">
+            உலகளவில் நடைபெறும் முக்கிய நிகழ்வுகள்
+        </h1>
+
+        <h1 class="video-title english">
+            Major Developments Around the World
+        </h1>
+
+        <!-- VIDEO PLAYER -->
+        <div class="video-player">
+
+            <!--
+                Replace "world-video-1.mp4"
+                with your actual video file name.
+            -->
+
+            <video controls poster="logo.jpg">
+
+                <source src="world-video-1.mp4" type="video/mp4">
+
+                Your browser does not support the video tag.
+
+            </video>
+
+        </div>
+
+        <!-- VIDEO CONTENT -->
+        <article class="video-content">
+
+            <!-- TAMIL -->
+            <div class="tamil">
+
+                <p>
+                    உலகின் பல்வேறு பகுதிகளில் நடைபெறும் முக்கிய நிகழ்வுகள்
+                    மற்றும் சர்வதேச முன்னேற்றங்கள் குறித்து இந்த வீடியோவில்
+                    பார்க்கலாம்.
+                </p>
+
+                <p>
+                    சர்வதேச உறவுகள், பொருளாதாரம், தொழில்நுட்பம் மற்றும்
+                    உலகளாவிய மாற்றங்கள் தொடர்பான தகவல்கள் இதில் இடம்பெறுகின்றன.
+                </p>
+
+                <p>
+                    உலகளவில் நடைபெறும் முக்கிய நிகழ்வுகளை தொடர்ந்து தெரிந்துகொள்ள
+                    Daily Happens செய்திகளை பின்தொடருங்கள்.
+                </p>
+
+                <div class="video-note">
+
+                    <strong>குறிப்பு:</strong>
+
+                    இது Daily Happens இணையதள வடிவமைப்பிற்காக உருவாக்கப்பட்ட
+                    மாதிரி வீடியோ பக்கம். உண்மையான செய்தி வீடியோவை வெளியிடுவதற்கு
+                    முன் தகவல்களை சரிபார்க்கவும்.
+
+                </div>
+
+            </div>
+
+            <!-- ENGLISH -->
+            <div class="english">
+
+                <p>
+                    This video covers major events and international developments
+                    taking place across different parts of the world.
+                </p>
+
+                <p>
+                    The coverage can include information related to international
+                    relations, the global economy, technology and other worldwide
+                    developments.
+                </p>
+
+                <p>
+                    Follow Daily Happens for continued updates on important
+                    developments from around the world.
+                </p>
+
+                <div class="video-note">
+
+                    <strong>Note:</strong>
+
+                    This is a sample video page created for the Daily Happens
+                    website design. Verify information before publishing real
+                    news video content.
+
+                </div>
+
+            </div>
+
+            <!-- BACK BUTTON -->
+            <a href="world.html" class="back-button">
+
+                <span class="tamil">
+                    ← உலக செய்திகள்
+                </span>
+
+                <span class="english">
+                    ← World News
+                </span>
+
+            </a>
+
+        </article>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+
+            <span class="tamil">
+                © 2026 Daily Happens — அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.
+            </span>
+
+            <span class="english">
+                © 2026 Daily Happens — All Rights Reserved.
+            </span>
+
+        </p>
+
+        <p>
+
+            <span class="tamil">
+                சுயாதீன செய்தி சேனல்
+            </span>
+
+            <span class="english">
+                Independent News Channel
+            </span>
+
+        </p>
+
+    </footer>
+
+    <!-- LANGUAGE SCRIPT -->
+    <script>
+
+        const tamilBtn = document.getElementById("tamilBtn");
+        const englishBtn = document.getElementById("englishBtn");
+
+        function showTamil() {
+
+            tamilBtn.classList.add("active");
+            englishBtn.classList.remove("active");
+
+            document.querySelectorAll(".tamil").forEach(function(element) {
+                element.style.display = "";
+            });
+
+            document.querySelectorAll(".english").forEach(function(element) {
+                element.style.display = "none";
+            });
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "tamil"
+            );
+        }
+
+        function showEnglish() {
+
+            englishBtn.classList.add("active");
+            tamilBtn.classList.remove("active");
+
+            document.querySelectorAll(".tamil").forEach(function(element) {
+                element.style.display = "none";
+            });
+
+            document.querySelectorAll(".english").forEach(function(element) {
+                element.style.display = "";
+            });
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "english"
+            );
+        }
+
+        const savedLanguage =
+            localStorage.getItem("dailyHappensLanguage");
+
+        if (savedLanguage === "english") {
+
+            showEnglish();
+
+        } else {
+
+            showTamil();
+
+        }
+
+    </script>
+
+</body>
+</html>

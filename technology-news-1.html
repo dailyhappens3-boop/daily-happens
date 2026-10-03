@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>தொழில்நுட்ப செய்திகள் | Daily Happens</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, "Noto Sans Tamil", sans-serif;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background: #111;
+            color: white;
+            padding: 8px 20px;
+            text-align: right;
+            font-size: 14px;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .top-bar a:hover {
+            color: #ff3333;
+        }
+
+        /* HEADER */
+        header {
+            background: white;
+            text-align: center;
+            padding: 18px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo {
+            width: 180px;
+            max-width: 80%;
+        }
+
+        /* LANGUAGE */
+        .language-switch {
+            margin-top: 15px;
+        }
+
+        .language-switch button {
+            padding: 7px 16px;
+            border: 1px solid #b40000;
+            background: white;
+            color: #b40000;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 0 3px;
+        }
+
+        .language-switch button.active {
+            background: #b40000;
+            color: white;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 14px 15px;
+            text-decoration: none;
+            color: #222;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            color: #b40000;
+        }
+
+        /* BREAKING NEWS */
+        .breaking {
+            display: flex;
+            align-items: center;
+            background: #0d2340;
+            color: white;
+            overflow: hidden;
+        }
+
+        .breaking-label {
+            background: #b40000;
+            padding: 12px 18px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .breaking-text {
+            padding-left: 20px;
+            white-space: nowrap;
+            animation: scrollText 18s linear infinite;
+        }
+
+        @keyframes scrollText {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* ARTICLE */
+        .article-container {
+            max-width: 950px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .category {
+            color: #b40000;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .article-title {
+            font-size: 42px;
+            line-height: 1.3;
+            color: #111;
+            margin-bottom: 15px;
+        }
+
+        .article-meta {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* ARTICLE IMAGE */
+        .article-image {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+            margin-bottom: 30px;
+        }
+
+        /* ARTICLE CONTENT */
+        .article-content {
+            background: white;
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        .article-content p {
+            font-size: 18px;
+            line-height: 1.9;
+            margin-bottom: 22px;
+        }
+
+        .article-content h2 {
+            font-size: 26px;
+            margin: 30px 0 15px;
+            color: #0d2340;
+        }
+
+        .article-note {
+            background: #fff4f4;
+            border-left: 4px solid #b40000;
+            padding: 15px;
+            margin-top: 30px;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* BACK BUTTON */
+        .back-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 11px 20px;
+            background: #0d2340;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .back-button:hover {
+            background: #b40000;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 7px 0;
+        }
+
+        /* LANGUAGE */
+        .english {
+            display: none;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+
+            .top-bar {
+                text-align: center;
+                font-size: 12px;
+            }
+
+            .top-bar a {
+                margin-left: 7px;
+            }
+
+            nav ul {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+
+            nav ul li a {
+                padding: 12px 10px;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+
+            .article-title {
+                font-size: 29px;
+            }
+
+            .article-content {
+                padding: 20px;
+            }
+
+            .article-content p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOP SOCIAL BAR -->
+    <div class="top-bar">
+
+        <a href="https://instagram.com/daily.happens" target="_blank">
+            Instagram
+        </a>
+
+        <a href="https://facebook.com/share/196dqkZQZC/" target="_blank">
+            Facebook
+        </a>
+
+        <a href="https://x.com/DailyHappean" target="_blank">
+            X
+        </a>
+
+        <a href="https://youtube.com/@daily.happens" target="_blank">
+            YouTube
+        </a>
+
+    </div>
+
+
+    <!-- HEADER -->
+    <header>
+
+        <img src="logo.jpg" alt="Daily Happens Logo" class="logo">
+
+        <div class="language-switch">
+
+            <button id="tamilBtn" class="active" onclick="showTamil()">
+                தமிழ்
+            </button>
+
+            <button id="englishBtn" onclick="showEnglish()">
+                English
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- NAVIGATION -->
+    <nav>
+
+        <ul>
+
+            <li><a href="index.html">Home</a></li>
+            <li><a href="latest-news.html">Latest News</a></li>
+            <li><a href="tamil-nadu.html">Tamil Nadu</a></li>
+            <li><a href="india.html">India</a></li>
+            <li><a href="world.html">World</a></li>
+            <li><a href="politics.html">Politics</a></li>
+            <li><a href="business.html">Business</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="sports.html">Sports</a></li>
+            <li><a href="cinema.html">Cinema</a></li>
+            <li><a href="videos.html">Videos</a></li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- BREAKING NEWS -->
+    <div class="breaking">
+
+        <div class="breaking-label">
+
+            <span class="tamil">
+                முக்கிய செய்திகள்
+            </span>
+
+            <span class="english">
+                BREAKING NEWS
+            </span>
+
+        </div>
+
+        <div class="breaking-text">
+
+            <span class="tamil">
+                தொழில்நுட்ப உலகில் புதிய மாற்றங்கள் தொடர்ந்து உருவாகி வருகின்றன.
+            </span>
+
+            <span class="english">
+                New developments and changes continue to emerge in the technology world.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ARTICLE -->
+    <main class="article-container">
+
+        <!-- CATEGORY -->
+        <div class="category">
+
+            <span class="tamil">
+                தொழில்நுட்ப செய்திகள்
+            </span>
+
+            <span class="english">
+                Technology News
+            </span>
+
+        </div>
+
+
+        <!-- TAMIL TITLE -->
+        <h1 class="article-title tamil">
+            புதிய தொழில்நுட்ப வளர்ச்சிகள் உலகளவில் கவனம் பெறுகின்றன
+        </h1>
+
+
+        <!-- ENGLISH TITLE -->
+        <h1 class="article-title english">
+            New Technology Developments Gain Global Attention
+        </h1>
+
+
+        <!-- DATE -->
+        <div class="article-meta">
+
+            <span class="tamil">
+                Daily Happens | தொழில்நுட்பம்
+            </span>
+
+            <span class="english">
+                Daily Happens | Technology
+            </span>
+
+        </div>
+
+
+        <!-- ARTICLE IMAGE -->
+        <img
+            class="article-image"
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
+            alt="Technology News"
+        >
+
+
+        <!-- ARTICLE CONTENT -->
+        <article class="article-content">
+
+            <!-- TAMIL -->
+            <div class="tamil">
+
+                <p>
+                    தொழில்நுட்ப உலகில் தொடர்ந்து உருவாகி வரும் புதிய
+                    முன்னேற்றங்கள் உலகளவில் கவனம் பெற்று வருகின்றன.
+                    செயற்கை நுண்ணறிவு, மென்பொருள், டிஜிட்டல் சேவைகள்
+                    மற்றும் புதிய சாதனங்கள் உள்ளிட்ட துறைகளில் பல்வேறு
+                    மாற்றங்கள் நடைபெற்று வருகின்றன.
+                </p>
+
+                <h2>
+                    புதிய தொழில்நுட்பத்தின் வளர்ச்சி
+                </h2>
+
+                <p>
+                    கடந்த சில ஆண்டுகளில் தொழில்நுட்பத்தின் பயன்பாடு
+                    பல்வேறு துறைகளில் வேகமாக அதிகரித்துள்ளது. கல்வி,
+                    வணிகம், தகவல் தொடர்பு மற்றும் பொழுதுபோக்கு போன்ற
+                    துறைகளிலும் டிஜிட்டல் தொழில்நுட்பங்கள் முக்கிய
+                    பங்கு வகிக்கின்றன.
+                </p>
+
+                <p>
+                    குறிப்பாக செயற்கை நுண்ணறிவு சார்ந்த கருவிகள் மற்றும்
+                    தானியங்கி தொழில்நுட்பங்கள் புதிய சேவைகள் மற்றும்
+                    பயன்பாடுகளை உருவாக்குவதில் அதிகமாக பயன்படுத்தப்பட்டு
+                    வருகின்றன.
+                </p>
+
+                <h2>
+                    எதிர்கால தொழில்நுட்பம்
+                </h2>
+
+                <p>
+                    எதிர்காலத்தில் தொழில்நுட்பத்தின் பயன்பாடு மேலும்
+                    விரிவடையும் என எதிர்பார்க்கப்படுகிறது. புதிய
+                    கண்டுபிடிப்புகள் மற்றும் டிஜிட்டல் சேவைகள் மக்களின்
+                    அன்றாட வாழ்க்கையில் தொடர்ந்து மாற்றங்களை ஏற்படுத்தலாம்.
+                </p>
+
+                <div class="article-note">
+
+                    <strong>குறிப்பு:</strong>
+
+                    இது Daily Happens இணையதள வடிவமைப்பிற்காக உருவாக்கப்பட்ட
+                    மாதிரி செய்திக் கட்டுரை. உண்மையான செய்தியை வெளியிடுவதற்கு
+                    முன் தகவல்களை நம்பகமான செய்தி ஆதாரங்களிலிருந்து
+                    சரிபார்க்கவும்.
+
+                </div>
+
+            </div>
+
+
+            <!-- ENGLISH -->
+            <div class="english">
+
+                <p>
+                    New developments in the technology sector are gaining
+                    attention around the world. Areas including artificial
+                    intelligence, software, digital services and new devices
+                    continue to experience significant changes.
+                </p>
+
+                <h2>
+                    Growth of New Technology
+                </h2>
+
+                <p>
+                    The use of technology has expanded rapidly across
+                    different sectors in recent years. Digital technologies
+                    now play an important role in areas such as education,
+                    business, communication and entertainment.
+                </p>
+
+                <p>
+                    Artificial intelligence tools and automation technologies
+                    are also increasingly being used to develop new services
+                    and applications.
+                </p>
+
+                <h2>
+                    The Future of Technology
+                </h2>
+
+                <p>
+                    Technology is expected to continue expanding into new
+                    areas in the coming years. New innovations and digital
+                    services may continue to bring changes to everyday life.
+                </p>
+
+                <div class="article-note">
+
+                    <strong>Note:</strong>
+
+                    This is a sample news article created for the Daily
+                    Happens website design. Verify information with reliable
+                    news sources before publishing real news content.
+
+                </div>
+
+            </div>
+
+
+            <!-- BACK BUTTON -->
+            <a href="technology.html" class="back-button">
+
+                <span class="tamil">
+                    ← தொழில்நுட்ப செய்திகள்
+                </span>
+
+                <span class="english">
+                    ← Technology News
+                </span>
+
+            </a>
+
+        </article>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+
+            <span class="tamil">
+                © 2026 Daily Happens — அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.
+            </span>
+
+            <span class="english">
+                © 2026 Daily Happens — All Rights Reserved.
+            </span>
+
+        </p>
+
+        <p>
+
+            <span class="tamil">
+                சுயாதீன செய்தி சேனல்
+            </span>
+
+            <span class="english">
+                Independent News Channel
+            </span>
+
+        </p>
+
+    </footer>
+
+
+    <!-- LANGUAGE SCRIPT -->
+    <script>
+
+        const tamilBtn = document.getElementById("tamilBtn");
+        const englishBtn = document.getElementById("englishBtn");
+
+
+        function showTamil() {
+
+            tamilBtn.classList.add("active");
+            englishBtn.classList.remove("active");
+
+            document.querySelectorAll(".tamil").forEach(function(element) {
+                element.style.display = "";
+            });
+
+            document.querySelectorAll(".english").forEach(function(element) {
+                element.style.display = "none";
+            });
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "tamil"
+            );
+        }
+
+
+        function showEnglish() {
+
+            englishBtn.classList.add("active");
+            tamilBtn.classList.remove("active");
+
+            document.querySelectorAll(".tamil").forEach(function(element) {
+                element.style.display = "none";
+            });
+
+            document.querySelectorAll(".english").forEach(function(element) {
+                element.style.display = "";
+            });
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "english"
+            );
+        }
+
+
+        const savedLanguage =
+            localStorage.getItem("dailyHappensLanguage");
+
+
+        if (savedLanguage === "english") {
+
+            showEnglish();
+
+        } else {
+
+            showTamil();
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>இந்தியா செய்திகள் | Daily Happens</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+
+        /* =========================
+           TOP BAR
+        ========================= */
+
+        .top-bar {
+            background: #111;
+            color: white;
+            padding: 8px 20px;
+            font-size: 13px;
+        }
+
+
+        .top-inner {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+
+        .social-links a:hover {
+            color: #ff3333;
+        }
+
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+        .header-inner {
+            max-width: 1200px;
+            min-height: 120px;
+
+            margin: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .logo {
+            width: 180px;
+            max-width: 80%;
+            height: auto;
+            display: block;
+        }
+
+
+
+        /* =========================
+           LANGUAGE
+        ========================= */
+
+        .language-switch {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+
+            padding: 10px;
+
+            background: white;
+        }
+
+
+        .language-switch button {
+            border: 1px solid #ccc;
+            background: white;
+
+            padding: 7px 16px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .language-switch button.active {
+            background: #b40000;
+            color: white;
+            border-color: #b40000;
+        }
+
+
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .navigation {
+            background: white;
+
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #ddd;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 1000;
+        }
+
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+
+            overflow-x: auto;
+
+            scrollbar-width: none;
+        }
+
+
+        .nav-inner::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .nav-inner a {
+            position: relative;
+
+            padding: 15px 18px;
+
+            color: #222;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            white-space: nowrap;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-inner a:hover {
+            color: #b40000;
+            background: #fafafa;
+        }
+
+
+
+        /* =========================
+           BREAKING NEWS
+        ========================= */
+
+        .breaking {
+            background: #b40000;
+            color: white;
+
+            padding: 10px 20px;
+
+            overflow: hidden;
+        }
+
+
+        .breaking-inner {
+            max-width: 1200px;
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .breaking-title {
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+
+        .breaking-text {
+            white-space: nowrap;
+
+            animation: ticker 18s linear infinite;
+        }
+
+
+        @keyframes ticker {
+
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+
+        }
+
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+            max-width: 1200px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+        }
+
+
+        .page-title {
+            margin-bottom: 30px;
+        }
+
+
+        .page-title h1 {
+            margin: 0;
+
+            font-size: 34px;
+        }
+
+
+        .page-title p {
+            color: #777;
+
+            margin-top: 8px;
+
+            font-size: 15px;
+        }
+
+
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+
+        .section-title {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+
+            border-left: 5px solid #b40000;
+
+            padding-left: 12px;
+        }
+
+
+        .section-title h2 {
+            margin: 0;
+
+            font-size: 24px;
+        }
+
+
+
+        /* =========================
+           NEWS GRID
+        ========================= */
+
+        .news-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .news-card {
+            background: white;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 3px 15px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .news-card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.12);
+        }
+
+
+        .news-card img {
+            width: 100%;
+
+            height: 210px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        .news-content {
+            padding: 20px;
+        }
+
+
+        .news-category {
+            color: #b40000;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        .news-content h3 {
+            margin: 0 0 10px;
+
+            font-size: 20px;
+
+            line-height: 1.4;
+        }
+
+
+        .news-content p {
+            margin: 0;
+
+            color: #666;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+        }
+
+
+        .read-more {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            color: #b40000;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+
+
+        /* =========================
+           VIDEO GRID
+        ========================= */
+
+        .video-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .video-card {
+            background: white;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 3px 15px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+        }
+
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+
+        .video-thumbnail {
+            position: relative;
+
+            height: 210px;
+
+            overflow: hidden;
+
+            background: #111;
+        }
+
+
+        .video-thumbnail img {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+
+        .play-button {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            width: 58px;
+            height: 58px;
+
+            background: rgba(180,0,0,0.95);
+
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 23px;
+
+            padding-left: 4px;
+        }
+
+
+        .video-content {
+            padding: 20px;
+        }
+
+
+        .video-content h3 {
+            margin: 0;
+
+            font-size: 19px;
+
+            line-height: 1.4;
+        }
+
+
+        .video-content p {
+            color: #666;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            margin: 10px 0 0;
+        }
+
+
+        .video-link {
+            display: inline-block;
+
+            margin-top: 14px;
+
+            color: #b40000;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 14px;
+        }
+
+
+
+        /* =========================
+           ENGLISH
+        ========================= */
+
+        .english {
+            display: none;
+        }
+
+
+        body.english-mode .tamil {
+            display: none !important;
+        }
+
+
+        body.english-mode .english {
+            display: block !important;
+        }
+
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #111;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px 20px;
+
+            margin-top: 50px;
+        }
+
+
+        footer p {
+            margin: 8px 0;
+        }
+
+
+        .footer-social {
+            margin-top: 15px;
+        }
+
+
+        .footer-social a {
+            color: white;
+
+            text-decoration: none;
+
+            margin: 0 8px;
+        }
+
+
+        .footer-social a:hover {
+            color: #ff3333;
+        }
+
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .news-grid,
+            .video-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .top-inner {
+                flex-direction: column;
+            }
+
+
+            .logo {
+                width: 140px;
+            }
+
+
+            .news-grid,
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .page-title h1 {
+                font-size: 28px;
+            }
+
+
+            .section-title h2 {
+                font-size: 21px;
+            }
+
+
+            .news-card img,
+            .video-thumbnail {
+                height: 220px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         TOP BAR
+    ========================= -->
+
+    <div class="top-bar">
+
+        <div class="top-inner">
+
+
+            <div>
+
+                <span class="tamil">
+                    தினசரி செய்திகளுக்கு Daily Happens-ஐ பின்தொடருங்கள்
+                </span>
+
+                <span class="english">
+                    Follow Daily Happens for daily news
+                </span>
+
+            </div>
+
+
+            <div class="social-links">
+
+                <a
+                    href="https://instagram.com/daily.happens"
+                    target="_blank">
+                    Instagram
+                </a>
+
+
+                <a
+                    href="https://facebook.com/share/196dqkZQZC/"
+                    target="_blank">
+                    Facebook
+                </a>
+
+
+                <a
+                    href="https://x.com/DailyHappean"
+                    target="_blank">
+                    X
+                </a>
+
+
+                <a
+                    href="https://youtube.com/@daily.happens"
+                    target="_blank">
+                    YouTube
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="index.html">
+
+                <img
+                    src="logo.jpg"
+                    alt="Daily Happens"
+                    class="logo">
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         LANGUAGE
+    ========================= -->
+
+    <div class="language-switch">
+
+        <button
+            id="tamilBtn"
+            class="active">
+
+            தமிழ்
+
+        </button>
+
+
+        <button
+            id="englishBtn">
+
+            English
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
+
+    <nav class="navigation">
+
+        <div class="nav-inner">
+
+
+            <a href="index.html">
+
+                Home
+
+            </a>
+
+
+            <a href="index.html#latest">
+
+                <span class="tamil">
+                    சமீபத்தியவை
+                </span>
+
+                <span class="english">
+                    Latest
+                </span>
+
+            </a>
+
+
+            <a href="tamil-nadu.html">
+
+                <span class="tamil">
+                    தமிழ்நாடு
+                </span>
+
+                <span class="english">
+                    Tamil Nadu
+                </span>
+
+            </a>
+
+
+            <a href="india.html">
+
+                <span class="tamil">
+                    இந்தியா
+                </span>
+
+                <span class="english">
+                    India
+                </span>
+
+            </a>
+
+
+            <a href="world.html">
+
+                <span class="tamil">
+                    உலகம்
+                </span>
+
+                <span class="english">
+                    World
+                </span>
+
+            </a>
+
+
+            <a href="politics.html">
+
+                <span class="tamil">
+                    அரசியல்
+                </span>
+
+                <span class="english">
+                    Politics
+                </span>
+
+            </a>
+
+
+            <a href="business.html">
+
+                <span class="tamil">
+                    வணிகம்
+                </span>
+
+                <span class="english">
+                    Business
+                </span>
+
+            </a>
+
+
+            <a href="technology.html">
+
+                <span class="tamil">
+                    தொழில்நுட்பம்
+                </span>
+
+                <span class="english">
+                    Technology
+                </span>
+
+            </a>
+
+
+            <a href="sports.html">
+
+                <span class="tamil">
+                    விளையாட்டு
+                </span>
+
+                <span class="english">
+                    Sports
+                </span>
+
+            </a>
+
+
+            <a href="cinema.html">
+
+                <span class="tamil">
+                    சினிமா
+                </span>
+
+                <span class="english">
+                    Cinema
+                </span>
+
+            </a>
+
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         BREAKING NEWS
+    ========================= -->
+
+    <div class="breaking">
+
+        <div class="breaking-inner">
+
+
+            <div class="breaking-title">
+
+                <span class="tamil">
+                    முக்கிய செய்தி
+                </span>
+
+                <span class="english">
+                    BREAKING
+                </span>
+
+            </div>
+
+
+            <div class="breaking-text">
+
+                <span class="tamil">
+                    இந்தியா தொடர்பான முக்கிய செய்தி புதுப்பிப்புகள் Daily Happens-ல்...
+                </span>
+
+                <span class="english">
+                    Latest India news updates on Daily Happens...
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
+    <main class="container">
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="page-title">
+
+
+            <div class="tamil">
+
+                <h1>
+                    இந்தியா செய்திகள்
+                </h1>
+
+                <p>
+                    இந்தியா முழுவதும் நடைபெறும் முக்கிய செய்திகளையும்
+                    நிகழ்வுகளையும் Daily Happens மூலம் அறிந்துகொள்ளுங்கள்.
+                </p>
+
+            </div>
+
+
+            <div class="english">
+
+                <h1>
+                    India News
+                </h1>
+
+                <p>
+                    Get the latest important news and updates from across
+                    India on Daily Happens.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             NEWS SECTION
+        ========================= -->
+
+        <section class="section">
+
+
+            <div class="section-title">
+
+                <div class="tamil">
+
+                    <h2>
+                        இந்தியா செய்திகள்
+                    </h2>
+
+                </div>
+
+
+                <div class="english">
+
+                    <h2>
+                        India News
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="news-grid">
+
+
+                <!-- NEWS 1 -->
+
+                <article class="news-card">
+
+
+                    <img
+                        src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80"
+                        alt="India News">
+
+
+                    <div class="news-content">
+
+
+                        <div class="tamil">
+
+                            <div class="news-category">
+                                இந்தியா
+                            </div>
+
+                            <h3>
+                                இந்தியா தொடர்பான முக்கிய செய்தி
+                            </h3>
+
+                            <p>
+                                நாட்டின் பல்வேறு பகுதிகளில் நடைபெறும்
+                                முக்கிய நிகழ்வுகள் குறித்த தகவல்கள்.
+                            </p>
+
+                            <a
+                                href="india-news-1.html"
+                                class="read-more">
+
+                                முழு செய்தியை படிக்க →
+
+                            </a>
+
+                        </div>
+
+
+
+                        <div class="english">
+
+                            <div class="news-category">
+                                India
+                            </div>
+
+                            <h3>
+                                Important India News
+                            </h3>
+
+                            <p>
+                                Important updates and developments from
+                                different parts of India.
+                            </p>
+
+                            <a
+                                href="india-news-1.html"
+                                class="read-more">
+
+                                Read Full Story →
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- NEWS 2 -->
+
+                <article class="news-card">
+
+
+                    <img
+                        src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80"
+                        alt="India News">
+
+
+                    <div class="news-content">
+
+
+                        <div class="tamil">
+
+                            <div class="news-category">
+                                இந்தியா
+                            </div>
+
+                            <h3>
+                                இந்தியாவில் நடைபெறும் முக்கிய நிகழ்வுகள்
+                            </h3>
+
+                            <p>
+                                இந்தியாவின் பல்வேறு பகுதிகளில் இருந்து
+                                முக்கிய செய்தி புதுப்பிப்புகள்.
+                            </p>
+
+                            <a
+                                href="india-news-2.html"
+                                class="read-more">
+
+                                முழு செய்தியை படிக்க →
+
+                            </a>
+
+                        </div>
+
+
+
+                        <div class="english">
+
+                            <div class="news-category">
+                                India
+                            </div>
+
+                            <h3>
+                                Important Events Across India
+                            </h3>
+
+                            <p>
+                                Important news updates from different
+                                parts of the country.
+                            </p>
+
+                            <a
+                                href="india-news-2.html"
+                                class="read-more">
+
+                                Read Full Story →
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- NEWS 3 -->
+
+                <article class="news-card">
+
+
+                    <img
+                        src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80"
+                        alt="India News">
+
+
+                    <div class="news-content">
+
+
+                        <div class="tamil">
+
+                            <div class="news-category">
+                                இந்தியா
+                            </div>
+
+                            <h3>
+                                இந்தியாவின் பல்வேறு பகுதிகளில் இருந்து செய்திகள்
+                            </h3>
+
+                            <p>
+                                நாட்டின் முக்கிய நகரங்கள் மற்றும் மாநிலங்களில்
+                                இருந்து செய்தி தகவல்கள்.
+                            </p>
+
+                            <a
+                                href="india-news-3.html"
+                                class="read-more">
+
+                                முழு செய்தியை படிக்க →
+
+                            </a>
+
+                        </div>
+
+
+
+                        <div class="english">
+
+                            <div class="news-category">
+                                India
+                            </div>
+
+                            <h3>
+                                News From Across India
+                            </h3>
+
+                            <p>
+                                News and updates from major cities and
+                                states across India.
+                            </p>
+
+                            <a
+                                href="india-news-3.html"
+                                class="read-more">
+
+                                Read Full Story →
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             VIDEO SECTION
+        ========================= -->
+
+        <section class="section">
+
+
+            <div class="section-title">
+
+
+                <div class="tamil">
+
+                    <h2>
+                        இந்தியா வீடியோக்கள்
+                    </h2>
+
+                </div>
+
+
+                <div class="english">
+
+                    <h2>
+                        India Videos
+                    </h2>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="video-grid">
+
+
+                <!-- VIDEO 1 -->
+
+                <article class="video-card">
+
+
+                    <a href="india-video-1.html">
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80"
+                                alt="India Video">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <div class="video-content">
+
+
+                        <div class="tamil">
+
+                            <h3>
+                                இந்தியா தொடர்பான முக்கிய செய்தி — வீடியோ
+                            </h3>
+
+                            <p>
+                                இந்தியா தொடர்பான செய்தி வீடியோவை
+                                Daily Happens-ல் பார்க்கலாம்.
+                            </p>
+
+                            <a
+                                href="india-video-1.html"
+                                class="video-link">
+
+                                வீடியோவை பார்க்க →
+
+                            </a>
+
+                        </div>
+
+
+
+                        <div class="english">
+
+                            <h3>
+                                Important India News — Video
+                            </h3>
+
+                            <p>
+                                Watch the latest India news video
+                                from Daily Happens.
+                            </p>
+
+                            <a
+                                href="india-video-1.html"
+                                class="video-link">
+
+                                Watch Video →
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- VIDEO 2 -->
+
+                <article class="video-card">
+
+
+                    <a href="india-video-2.html">
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80"
+                                alt="India Video">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <div class="video-content">
+
+
+                        <div class="tamil">
+
+                            <h3>
+                                இந்தியாவின் முக்கிய செய்தி புதுப்பிப்பு — வீடியோ
+                            </h3>
+
+                            <p>
+                                முக்கிய இந்திய செய்திகளை வீடியோ வடிவில்
+                                Daily Happens வழங்குகிறது.
+                            </p>
+
+                            <a
+                                href="india-video-2.html"
+                                class="video-link">
+
+                                வீடியோவை பார்க்க →
+
+                            </a>
+
+                        </div>
+
+
+
+                        <div class="english">
+
+                            <h3>
+                                India News Update — Video
+                            </h3>
+
+                            <p>
+                                Watch important India news updates
+                                in video format.
+                            </p>
+
+                            <a
+                                href="india-video-2.html"
+                                class="video-link">
+
+                                Watch Video →
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- VIDEO 3 -->
+
+                <article class="video-card">
+
+
+                    <a href="india-video-3.html">
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=1000&q=80"
+                                alt="India Video">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <div class="video-content">
+
+
+                        <div class="tamil">
+
+                            <h3>
+                                இந்தியாவின் முக்கிய செய்திகள் — வீடியோ
+                            </h3>
+
+                            <p>
+                                இந்தியா தொடர்பான முக்கிய செய்திகளை
+                                வீடியோவில் பார்க்கலாம்.
+                            </p>
+
+                            <a
+                                href="india-video-3.html"
+                                class="video-link">
+
+                                வீடியோவை பார்க்க →
+
+                            </a>
+
+                        </div>
+
+
+
+                        <div class="english">
+
+                            <h3>
+                                Major India News — Video
+                            </h3>
+
+                            <p>
+                                Watch important India news stories
+                                in video format.
+                            </p>
+
+                            <a
+                                href="india-video-3.html"
+                                class="video-link">
+
+                                Watch Video →
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+
+        <p>
+            <strong>Daily Happens</strong>
+        </p>
+
+
+        <p class="tamil">
+            சுயாதீன செய்தி சேனல்
+        </p>
+
+
+        <p class="english">
+            Independent News Channel
+        </p>
+
+
+        <div class="footer-social">
+
+
+            <a
+                href="https://instagram.com/daily.happens"
+                target="_blank">
+                Instagram
+            </a>
+
+
+            <a
+                href="https://facebook.com/share/196dqkZQZC/"
+                target="_blank">
+                Facebook
+            </a>
+
+
+            <a
+                href="https://x.com/DailyHappean"
+                target="_blank">
+                X
+            </a>
+
+
+            <a
+                href="https://youtube.com/@daily.happens"
+                target="_blank">
+                YouTube
+            </a>
+
+
+        </div>
+
+
+        <p
+            style="
+                margin-top:20px;
+                font-size:13px;
+                color:#aaa;
+            ">
+
+            © 2026 Daily Happens. All rights reserved.
+
+        </p>
+
+
+    </footer>
+
+
+
+    <!-- =========================
+         LANGUAGE SCRIPT
+    ========================= -->
+
+    <script>
+
+
+        const tamilBtn =
+            document.getElementById("tamilBtn");
+
+
+        const englishBtn =
+            document.getElementById("englishBtn");
+
+
+
+        function showTamil() {
+
+
+            document.body.classList.remove(
+                "english-mode"
+            );
+
+
+            tamilBtn.classList.add(
+                "active"
+            );
+
+
+            englishBtn.classList.remove(
+                "active"
+            );
+
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "tamil"
+            );
+
+        }
+
+
+
+        function showEnglish() {
+
+
+            document.body.classList.add(
+                "english-mode"
+            );
+
+
+            englishBtn.classList.add(
+                "active"
+            );
+
+
+            tamilBtn.classList.remove(
+                "active"
+            );
+
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "english"
+            );
+
+        }
+
+
+
+        tamilBtn.addEventListener(
+            "click",
+            showTamil
+        );
+
+
+        englishBtn.addEventListener(
+            "click",
+            showEnglish
+        );
+
+
+
+        if (
+            localStorage.getItem(
+                "dailyHappensLanguage"
+            ) === "english"
+        ) {
+
+            showEnglish();
+
+        } else {
+
+            showTamil();
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

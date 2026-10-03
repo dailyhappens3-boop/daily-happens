@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="ta">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>வீடியோக்கள் | Daily Happens</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+
+        /* TOP SOCIAL BAR */
+
+        .top-bar {
+            background: #111;
+            color: #fff;
+            padding: 8px 20px;
+        }
+
+
+        .top-bar-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 14px;
+        }
+
+
+        .top-bar a {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0) invert(1);
+            transition: 0.3s ease;
+        }
+
+
+        .social-icon:hover {
+            transform: scale(1.15);
+        }
+
+
+        /* HEADER */
+
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            min-height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .logo {
+            width: 180px;
+            max-width: 180px;
+            height: auto;
+            display: block;
+        }
+
+
+        /* LANGUAGE */
+
+        .language-bar {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 8px 20px;
+            text-align: right;
+        }
+
+
+        .language-btn {
+            border: 1px solid #ccc;
+            background: #fff;
+            padding: 6px 13px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+
+        .language-btn.active {
+            background: #b40000;
+            color: #fff;
+            border-color: #b40000;
+        }
+
+
+        /* NAVIGATION */
+
+        .navigation {
+            width: 100%;
+            background: #fff;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+
+        .nav-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+
+        .nav-content::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .nav-content a {
+            position: relative;
+            flex: 0 0 auto;
+            padding: 16px 18px;
+            color: #222;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: 0.25s ease;
+        }
+
+
+        .nav-content a:hover {
+            color: #b40000;
+            background: #fafafa;
+        }
+
+
+        .nav-content a::after {
+            content: "";
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 0;
+            height: 3px;
+            background: #b40000;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: 0.25s ease;
+        }
+
+
+        .nav-content a:hover::after {
+            transform: scaleX(1);
+        }
+
+
+        /* BREAKING NEWS */
+
+        .breaking {
+            background: #0d2340;
+            color: #fff;
+            padding: 10px 20px;
+            overflow: hidden;
+        }
+
+
+        .breaking-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+
+        .breaking-label {
+            background: #b40000;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+
+        .breaking-text {
+            white-space: nowrap;
+            overflow: hidden;
+            flex: 1;
+        }
+
+
+        .breaking-text span {
+            display: inline-block;
+            animation: ticker 18s linear infinite;
+        }
+
+
+        @keyframes ticker {
+
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+
+        }
+
+
+        /* PAGE */
+
+        .page-container {
+            max-width: 1200px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+
+        .page-title {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+
+        .page-subtitle {
+            color: #777;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+
+        /* VIDEO GRID */
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+
+        .video-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+            transition: 0.3s ease;
+        }
+
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 18px rgba(0,0,0,0.12);
+        }
+
+
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 210px;
+            overflow: hidden;
+        }
+
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        /* PLAY BUTTON */
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 58px;
+            height: 58px;
+
+            background: rgba(180, 0, 0, 0.95);
+            color: #fff;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 24px;
+
+            padding-left: 4px;
+        }
+
+
+        .video-info {
+            padding: 20px;
+        }
+
+
+        .video-category {
+            display: inline-block;
+            background: #b40000;
+            color: #fff;
+            padding: 5px 9px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+
+        .video-title {
+            font-size: 19px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+            color: #111;
+        }
+
+
+        .video-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+
+        .watch-button {
+            display: inline-block;
+            text-decoration: none;
+            background: #0d2340;
+            color: #fff;
+            padding: 9px 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            transition: 0.3s ease;
+        }
+
+
+        .watch-button:hover {
+            background: #b40000;
+        }
+
+
+        /* LANGUAGE SWITCH */
+
+        .english {
+            display: none;
+        }
+
+
+        body.english-mode .tamil {
+            display: none !important;
+        }
+
+
+        body.english-mode .english {
+            display: inline !important;
+        }
+
+
+        /* FOOTER */
+
+        .footer {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+
+        .footer p {
+            margin: 6px 0;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .top-bar-content {
+                justify-content: center;
+            }
+
+
+            .header-inner {
+                min-height: 100px;
+            }
+
+
+            .logo {
+                width: 150px;
+            }
+
+
+            .language-bar {
+                text-align: center;
+            }
+
+
+            .nav-content a {
+                padding: 13px 14px;
+                font-size: 13px;
+            }
+
+
+            .breaking-inner {
+                gap: 8px;
+            }
+
+
+            .breaking-label {
+                padding: 6px 8px;
+                font-size: 11px;
+            }
+
+
+            .page-container {
+                margin: 30px auto;
+            }
+
+
+            .page-title {
+                font-size: 28px;
+            }
+
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .video-thumbnail {
+                height: 220px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- TOP SOCIAL BAR -->
+
+    <div class="top-bar">
+
+        <div class="top-bar-content">
+
+            <a href="https://instagram.com/daily.happens"
+               target="_blank">
+
+                <img
+                    class="social-icon"
+                    src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg"
+                    alt="Instagram">
+
+            </a>
+
+
+            <a href="https://facebook.com/share/196dqkZQZC/"
+               target="_blank">
+
+                <img
+                    class="social-icon"
+                    src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg"
+                    alt="Facebook">
+
+            </a>
+
+
+            <a href="https://x.com/DailyHappean"
+               target="_blank">
+
+                <img
+                    class="social-icon"
+                    src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg"
+                    alt="X">
+
+            </a>
+
+
+            <a href="https://youtube.com/@daily.happens"
+               target="_blank">
+
+                <img
+                    class="social-icon"
+                    src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg"
+                    alt="YouTube">
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="header-inner">
+
+            <a href="index.html">
+
+                <img
+                    src="logo.jpg"
+                    alt="Daily Happens"
+                    class="logo">
+
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- LANGUAGE -->
+
+    <div class="language-bar">
+
+        <button
+            id="tamilBtn"
+            class="language-btn active">
+
+            தமிழ்
+
+        </button>
+
+
+        <button
+            id="englishBtn"
+            class="language-btn">
+
+            English
+
+        </button>
+
+    </div>
+
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+
+        <div class="nav-content">
+
+            <a href="index.html">
+
+                <span class="tamil">முகப்பு</span>
+                <span class="english">Home</span>
+
+            </a>
+
+
+            <a href="index.html#latest">
+
+                <span class="tamil">சமீபத்திய செய்திகள்</span>
+                <span class="english">Latest News</span>
+
+            </a>
+
+
+            <a href="tamil-nadu.html">
+
+                <span class="tamil">தமிழ்நாடு</span>
+                <span class="english">Tamil Nadu</span>
+
+            </a>
+
+
+            <a href="india.html">
+
+                <span class="tamil">இந்தியா</span>
+                <span class="english">India</span>
+
+            </a>
+
+
+            <a href="world.html">
+
+                <span class="tamil">உலகம்</span>
+                <span class="english">World</span>
+
+            </a>
+
+
+            <a href="politics.html">
+
+                <span class="tamil">அரசியல்</span>
+                <span class="english">Politics</span>
+
+            </a>
+
+
+            <a href="business.html">
+
+                <span class="tamil">வணிகம்</span>
+                <span class="english">Business</span>
+
+            </a>
+
+
+            <a href="technology.html">
+
+                <span class="tamil">தொழில்நுட்பம்</span>
+                <span class="english">Technology</span>
+
+            </a>
+
+
+            <a href="sports.html">
+
+                <span class="tamil">விளையாட்டு</span>
+                <span class="english">Sports</span>
+
+            </a>
+
+
+            <a href="cinema.html">
+
+                <span class="tamil">சினிமா</span>
+                <span class="english">Cinema</span>
+
+            </a>
+
+
+            <a href="videos.html">
+
+                <span class="tamil">வீடியோக்கள்</span>
+                <span class="english">Videos</span>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- BREAKING NEWS -->
+
+    <section class="breaking">
+
+        <div class="breaking-inner">
+
+            <div class="breaking-label">
+
+                <span class="tamil">
+                    முக்கிய செய்தி
+                </span>
+
+                <span class="english">
+                    BREAKING
+                </span>
+
+            </div>
+
+
+            <div class="breaking-text">
+
+                <span class="tamil">
+                    Daily Happens வழங்கும் முக்கிய செய்திகள் மற்றும் வீடியோ செய்திகள்
+                </span>
+
+                <span class="english">
+                    Daily Happens brings you important news and video updates.
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- VIDEOS -->
+
+    <main>
+
+        <div class="page-container">
+
+            <h1 class="page-title">
+
+                <span class="tamil">
+                    வீடியோக்கள்
+                </span>
+
+                <span class="english">
+                    Videos
+                </span>
+
+            </h1>
+
+
+            <p class="page-subtitle">
+
+                <span class="tamil">
+                    Daily Happens வழங்கும் சமீபத்திய வீடியோ செய்திகள்
+                </span>
+
+                <span class="english">
+                    Latest video news and updates from Daily Happens
+                </span>
+
+            </p>
+
+
+
+            <div class="video-grid">
+
+
+                <!-- VIDEO 1 -->
+
+                <article class="video-card">
+
+                    <a href="technology-video-1.html">
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
+                                alt="Artificial Intelligence">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <div class="video-info">
+
+                        <span class="video-category">
+
+                            <span class="tamil">
+                                தொழில்நுட்பம்
+                            </span>
+
+                            <span class="english">
+                                Technology
+                            </span>
+
+                        </span>
+
+
+                        <h2 class="video-title">
+
+                            <span class="tamil">
+                                செயற்கை நுண்ணறிவு தொழில்நுட்பம் எப்படி செயல்படுகிறது?
+                            </span>
+
+                            <span class="english">
+                                How Does Artificial Intelligence Technology Work?
+                            </span>
+
+                        </h2>
+
+
+                        <p class="video-description">
+
+                            <span class="tamil">
+                                செயற்கை நுண்ணறிவு தொழில்நுட்பம் மற்றும் அதன் பயன்பாடுகள் குறித்து எளிய விளக்கம்.
+                            </span>
+
+                            <span class="english">
+                                A simple explanation of artificial intelligence technology and its applications.
+                            </span>
+
+                        </p>
+
+
+                        <a
+                            href="technology-video-1.html"
+                            class="watch-button">
+
+                            <span class="tamil">
+                                வீடியோ பார்க்க
+                            </span>
+
+                            <span class="english">
+                                Watch Video
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- VIDEO 2 -->
+
+                <article class="video-card">
+
+                    <a href="#">
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80"
+                                alt="Cloud Computing">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <div class="video-info">
+
+                        <span class="video-category">
+
+                            <span class="tamil">
+                                தொழில்நுட்பம்
+                            </span>
+
+                            <span class="english">
+                                Technology
+                            </span>
+
+                        </span>
+
+
+                        <h2 class="video-title">
+
+                            <span class="tamil">
+                                கிளவுட் கம்ப்யூட்டிங் என்றால் என்ன?
+                            </span>
+
+                            <span class="english">
+                                What Is Cloud Computing?
+                            </span>
+
+                        </h2>
+
+
+                        <p class="video-description">
+
+                            <span class="tamil">
+                                கிளவுட் கம்ப்யூட்டிங் தொழில்நுட்பம் எவ்வாறு செயல்படுகிறது என்பதை அறிந்து கொள்ளுங்கள்.
+                            </span>
+
+                            <span class="english">
+                                Learn how cloud computing technology works and where it is being used.
+                            </span>
+
+                        </p>
+
+
+                        <a
+                            href="#"
+                            class="watch-button">
+
+                            <span class="tamil">
+                                விரைவில்
+                            </span>
+
+                            <span class="english">
+                                Coming Soon
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- VIDEO 3 -->
+
+                <article class="video-card">
+
+                    <a href="#">
+
+                        <div class="video-thumbnail">
+
+                            <img
+                                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+                                alt="Technology">
+
+                            <div class="play-button">
+                                ▶
+                            </div>
+
+                        </div>
+
+                    </a>
+
+
+                    <div class="video-info">
+
+                        <span class="video-category">
+
+                            <span class="tamil">
+                                தொழில்நுட்பம்
+                            </span>
+
+                            <span class="english">
+                                Technology
+                            </span>
+
+                        </span>
+
+
+                        <h2 class="video-title">
+
+                            <span class="tamil">
+                                தொழில்நுட்ப உலகின் புதிய மாற்றங்கள்
+                            </span>
+
+                            <span class="english">
+                                New Changes in the Technology World
+                            </span>
+
+                        </h2>
+
+
+                        <p class="video-description">
+
+                            <span class="tamil">
+                                புதிய தொழில்நுட்பங்கள் மற்றும் டிஜிட்டல் உலகின் முக்கிய மாற்றங்கள்.
+                            </span>
+
+                            <span class="english">
+                                Important developments in new technologies and the digital world.
+                            </span>
+
+                        </p>
+
+
+                        <a
+                            href="#"
+                            class="watch-button">
+
+                            <span class="tamil">
+                                விரைவில்
+                            </span>
+
+                            <span class="english">
+                                Coming Soon
+                            </span>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <p>
+
+            <span class="tamil">
+                Daily Happens — சுயாதீன செய்தி சேனல்
+            </span>
+
+            <span class="english">
+                Daily Happens — Independent News Channel
+            </span>
+
+        </p>
+
+
+        <p>
+
+            <a href="https://dailyhappens.in">
+                dailyhappens.in
+            </a>
+
+        </p>
+
+
+        <p>
+            © 2026 Daily Happens. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+
+    <!-- LANGUAGE SCRIPT -->
+
+    <script>
+
+        const tamilBtn =
+            document.getElementById("tamilBtn");
+
+        const englishBtn =
+            document.getElementById("englishBtn");
+
+
+        function showTamil() {
+
+            document.body.classList.remove(
+                "english-mode"
+            );
+
+            tamilBtn.classList.add("active");
+
+            englishBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "tamil"
+            );
+
+        }
+
+
+        function showEnglish() {
+
+            document.body.classList.add(
+                "english-mode"
+            );
+
+            englishBtn.classList.add("active");
+
+            tamilBtn.classList.remove("active");
+
+            localStorage.setItem(
+                "dailyHappensLanguage",
+                "english"
+            );
+
+        }
+
+
+        tamilBtn.addEventListener(
+            "click",
+            showTamil
+        );
+
+
+        englishBtn.addEventListener(
+            "click",
+            showEnglish
+        );
+
+
+        if (
+            localStorage.getItem(
+                "dailyHappensLanguage"
+            ) === "english"
+        ) {
+
+            showEnglish();
+
+        } else {
+
+            showTamil();
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
